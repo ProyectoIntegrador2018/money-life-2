@@ -1,6 +1,6 @@
 # Nombre del proyecto
 
-Money Life (Sitio Web)
+Money Life (Aplicación para Android)
 
 ## Introducción
 
@@ -47,6 +47,8 @@ Versión 1.0
 
 | Tecnológia      | Versión      |
 | --------------- | ------------ |
+| Kotlin          | 1.3.72       |
+| AndroidX        | 1.3.2        |
 
 ### Recursos de gestión
 ### Configuración del proyecto
