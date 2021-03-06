@@ -32,6 +32,12 @@ El juego comenzará con una persona estudiante de aproximadamente 18 años y se 
 
 ### Ambiente URLS
 
+Backend: https://moneylifev1.azurewebsites.net
+
+Base de Datos: moneylifedbserver.mysql.database.azure.com
+
+Servicio de Almacenamiento: https://moneylifestorage.blob.core.windows.net/
+
 ### Miembros del equipo
 
 Versión 1.0
@@ -51,5 +57,10 @@ Versión 1.0
 | AndroidX        | 1.3.2        |
 
 ### Recursos de gestión
+
+Microsoft Teams
+
+GitHub Projects
+
 ### Configuración del proyecto
 ### Documentación
