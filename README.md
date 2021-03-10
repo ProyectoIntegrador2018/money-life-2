@@ -1,7 +1,6 @@
 # Nombre del proyecto
 
 Money Life (Aplicación para Android)
-
 ## Introducción
 
 Este proyecto es un videojuego de finanzas personales, el cual consiste en simular de una forma interactiva la vida de una persona con base en las decisiones económicas que se presenten, tratando de imitar las oportunidades que comúnmente se presentan en la vida cotidiana de una persona de nivel socioeconómico medio. El juego tendrá como variables eventos de tipio micro y macro, aparte de toma de decisiones en forma de inversiones, gastos personales y modificaciones de tu estado económico actual, todas estas variables tendrán un efecto tanto positivo como negativo en tu ganancias y deudas diarias, aparte de evaluar el nivel de comodidad o felicidad con el cual cuenta tu personaje con las decisiones y eventos previos.
