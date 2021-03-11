@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ServicesModule {
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-            .baseUrl("https://google.com")
+            .baseUrl("https://moneylifev1.azurewebsites.net")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
@@ -20,4 +20,9 @@ object ServicesModule {
     fun provideSampleService(
         retrofit: Retrofit
     ): SampleService = retrofit.create(SampleService::class.java)
+
+    @Provides
+    fun provideUserService(
+            retrofit: Retrofit
+    ): UserService = retrofit.create(UserService::class.java)
 }
