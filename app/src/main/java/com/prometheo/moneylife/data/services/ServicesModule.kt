@@ -25,4 +25,9 @@ object ServicesModule {
     fun provideUserService(
             retrofit: Retrofit
     ): UserService = retrofit.create(UserService::class.java)
+
+    @Provides
+    fun provideTurnService(
+            retrofit: Retrofit
+    ): TurnService = retrofit.create(TurnService::class.java)
 }
