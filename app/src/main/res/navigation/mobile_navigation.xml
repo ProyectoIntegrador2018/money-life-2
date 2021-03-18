@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_turn">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.prometheo.moneylife.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/navigation_turn"
+        android:name="com.prometheo.moneylife.ui.turn.TurnFragment"
+        android:label="@string/title_turn"
         tools:layout="@layout/fragment_home" />
 
     <fragment
