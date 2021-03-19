@@ -18,4 +18,8 @@
     <string name="card_fun_title">Diversión</string>
     <string name="card_laboral_title">Laborales</string>
     <string name="card_personal_property_title">Bienes</string>
+    <string name="login_error">Ha ocurrido un error</string>
+    <string name="login_button">iniciar login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Contraseña</string>
 </resources>

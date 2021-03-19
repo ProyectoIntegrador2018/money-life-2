@@ -2,6 +2,7 @@ package com.prometheo.moneylife
 
 import com.prometheo.moneylife.data.models.User
 import com.prometheo.moneylife.data.models.UserBody
+import com.prometheo.moneylife.data.models.responses.LoginResponse
 import com.prometheo.moneylife.data.services.UserService
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -16,7 +17,7 @@ class UserServiceUnitTest {
     @Mock
     private lateinit var mockUserService: UserService
 
-    private val mockUser = User(USER_ID, EMAIL)
+    private val mockUser = LoginResponse(USER_ID, EMAIL, null)
 
     @Before
     fun setup() {
