@@ -25,11 +25,15 @@ class MainActivity() : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-        if (userPrefs.userName.isNullOrEmpty()) {
-            supportFragmentManager.commit {
-                add(android.R.id.content, LoginFragment.newInstance())
-                addToBackStack(null)
-            }
+        if (!userPrefs.userSignedIn) {
+            openLoginFragment()
+        }
+    }
+
+    private fun openLoginFragment() {
+        supportFragmentManager.commit {
+            add(android.R.id.content, LoginFragment.newInstance())
+            addToBackStack(null)
         }
     }
 }

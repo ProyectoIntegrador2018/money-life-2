@@ -23,4 +23,7 @@ class PrefsImp @Inject constructor(
         set(value) {
             sharedPrefs.edit { putString("password", value) }
         }
+
+    override val userSignedIn: Boolean
+        get() = !userName.isNullOrEmpty()
 }
