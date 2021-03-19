@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commitNow
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.prometheo.moneylife.databinding.FragmentSignupBinding
@@ -79,7 +79,7 @@ class SignupFragment : Fragment() {
 
     private fun goToLogin() {
         callback.remove()
-        parentFragmentManager.commitNow {
+        parentFragmentManager.commit {
             replace(android.R.id.content, LoginFragment.newInstance())
         }
     }
