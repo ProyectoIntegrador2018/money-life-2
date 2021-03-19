@@ -41,7 +41,7 @@ class LoginViewModelTest {
         val email = "test@test.com"
         val password = "test"
         val userId = 1
-        val vm = LoginViewModel(userService = mockUserService, prefs = mockPrefs)
+        val vm = SignupViewModel(userService = mockUserService, prefs = mockPrefs)
 
         coEvery {
             mockUserService.login(UserBody(email = email, password = password))
@@ -49,11 +49,11 @@ class LoginViewModelTest {
             LoginResponse(userId = userId, email = email, errorMessage = null)
         )
 
-        val updates = mutableListOf<LoginViewModel.UiModel>()
+        val updates = mutableListOf<SignupViewModel.UiModel>()
         vm.uiModel.observeForever { updates.add(it) }
 
         // Act
-        vm.login(email, password)
+        vm.signup(email, password)
 
         // Assert
         updates.removeAt(0) // ignore initial value
@@ -66,7 +66,7 @@ class LoginViewModelTest {
         val email = "test@test.com"
         val password = "test"
         val userId = 1
-        val vm = LoginViewModel(userService = mockUserService, prefs = mockPrefs)
+        val vm = SignupViewModel(userService = mockUserService, prefs = mockPrefs)
 
         coEvery {
             mockUserService.login(UserBody(email = email, password = password))
@@ -74,11 +74,11 @@ class LoginViewModelTest {
             LoginResponse(userId = userId, email = email, errorMessage = null)
         )
 
-        val updates = mutableListOf<LoginViewModel.UiModel>()
+        val updates = mutableListOf<SignupViewModel.UiModel>()
         vm.uiModel.observeForever { updates.add(it) }
 
         // Act
-        vm.login(email, password)
+        vm.signup(email, password)
 
         // Assert
         assertThat(updates.last().goToApp).isTrue()
@@ -90,7 +90,7 @@ class LoginViewModelTest {
         val email = "test@test.com"
         val password = "wrong password"
         val userId = 1
-        val vm = LoginViewModel(userService = mockUserService, prefs = mockPrefs)
+        val vm = SignupViewModel(userService = mockUserService, prefs = mockPrefs)
 
         coEvery {
             mockUserService.login(UserBody(email = email, password = password))
@@ -98,11 +98,11 @@ class LoginViewModelTest {
             LoginResponse(userId = null, email = null, errorMessage = "error")
         )
 
-        val updates = mutableListOf<LoginViewModel.UiModel>()
+        val updates = mutableListOf<SignupViewModel.UiModel>()
         vm.uiModel.observeForever { updates.add(it) }
 
         // Act
-        vm.login(email, password)
+        vm.signup(email, password)
 
         // Assert
         assertThat(updates.last().showError).isTrue()
