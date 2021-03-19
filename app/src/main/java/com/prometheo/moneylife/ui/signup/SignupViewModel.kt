@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class SignupViewModel @Inject constructor(
     private val userService: UserService,
     private val prefs: Prefs
 ) : ViewModel() {
@@ -21,16 +21,16 @@ class LoginViewModel @Inject constructor(
         val showError: Boolean,
         val showLoading: Boolean,
         val goToApp: Boolean,
-        val goToSignup: Boolean
+        val goToLogin: Boolean
     )
 
     private val _uiModel = MutableLiveData<UiModel>().apply {
-        value = UiModel(showError = false, showLoading = false, goToApp = false, goToSignup = false)
+        value = UiModel(showError = false, showLoading = false, goToApp = false, goToLogin = false)
     }
 
     val uiModel: LiveData<UiModel> = _uiModel
 
-    fun login(email: String, password: String) {
+    fun signup(email: String, password: String) {
         _uiModel.value = _uiModel.value?.copy(showLoading = true, showError = false)
 
         viewModelScope.launch {
@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun goToSignup() {
-        _uiModel.value = _uiModel.value?.copy(goToSignup = true)
+    fun goToLogin() {
+        _uiModel.value = _uiModel.value?.copy(goToLogin = true)
     }
 }

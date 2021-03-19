@@ -1,4 +1,4 @@
-package com.prometheo.moneylife.ui.login
+package com.prometheo.moneylife.ui.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.prometheo.moneylife.databinding.FragmentLoginBinding
-import com.prometheo.moneylife.ui.signup.SignupFragment
+import com.prometheo.moneylife.databinding.FragmentSignupBinding
+import com.prometheo.moneylife.ui.login.LoginFragment
+import com.prometheo.moneylife.ui.login.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class SignupFragment : Fragment() {
     private val vm: SignupViewModel by viewModels()
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
     lateinit var callback: OnBackPressedCallback
 
@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -59,12 +59,8 @@ class LoginFragment : Fragment() {
             binding.loadingIndicator.isVisible = it.showLoading
         })
 
-        binding.loginButton.setOnClickListener {
+        binding.signupButton.setOnClickListener {
             vm.signup(binding.emailField.text.toString(), binding.passwordField.text.toString())
-        }
-
-        binding.goToSignup.setOnClickListener {
-            vm.goToLogin()
         }
     }
 
@@ -83,14 +79,15 @@ class LoginFragment : Fragment() {
 
     private fun goToLogin() {
         callback.remove()
-        parentFragmentManager.commit {
-            replace(android.R.id.content, SignupFragment.newInstance())
+        parentFragmentManager.commitNow {
+            replace(android.R.id.content, LoginFragment.newInstance())
         }
     }
 
+
     companion object {
-        fun newInstance(): LoginFragment {
-            return LoginFragment()
+        fun newInstance(): SignupFragment {
+            return SignupFragment()
         }
     }
 }

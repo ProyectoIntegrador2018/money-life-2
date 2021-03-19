@@ -55,7 +55,7 @@
                 android:textAlignment="center"
                 android:textColor="#FF0000"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/loginButton"
+                app:layout_constraintBottom_toTopOf="@+id/signupButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/passwordFieldHint"
@@ -102,11 +102,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/loginButton"
+                android:id="@+id/signupButton"
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:text="@string/login_button"
+                android:text="@string/signup_button"
                 android:textColor="#0040EE"
                 app:backgroundTint="#F5F7FF"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -116,12 +116,12 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/goToSignup"
+        android:id="@+id/goToLogin"
         style="?attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:text="@string/go_to_signup_button"
+        android:text="@string/go_to_login_button"
         android:textColor="#FFFFFF"
         app:backgroundTint="#30FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/card"

@@ -22,4 +22,7 @@
     <string name="login_button">iniciar login</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Contraseña</string>
+    <string name="signup_button">Crear Cuenta</string>
+    <string name="go_to_login_button">Ya tienes una cuenta? Inicia sesión</string>
+    <string name="go_to_signup_button">No tienes una cuenta? Crear cuenta</string>
 </resources>
