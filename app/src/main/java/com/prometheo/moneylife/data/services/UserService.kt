@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface UserService {
     @POST("/users/")
-    suspend fun register(@Body userBody: UserBody): Response<User>
+    suspend fun register(@Body userBody: UserBody): Response<LoginResponse>
 
     @POST("/users/login/")
     suspend fun login(@Body userBody: UserBody): Response<LoginResponse>

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prometheo.moneylife.data.models.UserBody
+import com.prometheo.moneylife.data.preferences.Prefs
 import com.prometheo.moneylife.data.preferences.PrefsImp
 import com.prometheo.moneylife.data.services.UserService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val userService: UserService,
-    private val prefs: PrefsImp
+    private val prefs: Prefs
 ) : ViewModel() {
     data class UiModel(
         val showError: Boolean,
@@ -44,7 +45,7 @@ class LoginViewModel @Inject constructor(
                     goToApp = true
                 )
             } else {
-                _uiModel.value = _uiModel.value?.copy(showLoading = false, showError = true)
+                _uiModel.postValue(uiModel.value?.copy(showLoading = false, showError = true))
             }
         }
     }
