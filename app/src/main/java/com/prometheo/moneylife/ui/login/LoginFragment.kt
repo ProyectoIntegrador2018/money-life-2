@@ -53,6 +53,7 @@ class LoginFragment : Fragment() {
             }
 
             binding.errorMessage.isVisible = it.showError
+            binding.loadingIndicator.isVisible = it.showLoading
         })
 
         binding.loginButton.setOnClickListener {

@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(
     )
 
     private val _uiModel = MutableLiveData<UiModel>().apply {
-        value = UiModel(showError = false, showLoading = true, goToApp = false)
+        value = UiModel(showError = false, showLoading = false, goToApp = false)
     }
 
     val uiModel: LiveData<UiModel> = _uiModel
@@ -37,22 +37,15 @@ class LoginViewModel @Inject constructor(
             if (response.isSuccessful && response.body()?.errorMessage.isNullOrBlank()) {
                 prefs.userName = email
                 prefs.password = password
-                goToApp()
+
+                _uiModel.value = _uiModel.value?.copy(
+                    showLoading = false,
+                    showError = false,
+                    goToApp = true
+                )
             } else {
-                showError()
+                _uiModel.value = _uiModel.value?.copy(showLoading = false, showError = true)
             }
         }
-    }
-
-    private fun goToApp() {
-        _uiModel.value = _uiModel.value?.copy(
-            showLoading = false,
-            showError = false,
-            goToApp = true
-        )
-    }
-
-    private fun showError() {
-        _uiModel.value = _uiModel.value?.copy(showLoading = true, showError = true)
     }
 }
