@@ -29,11 +29,11 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            // NOOP
+            // Ignore back button.
         }
-
         callback.isEnabled = true
     }
+
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -49,8 +49,7 @@ class LoginFragment : Fragment() {
 
         vm.uiModel.observe(viewLifecycleOwner, Observer {
             if (it.goToApp) {
-                callback.isEnabled = false
-                requireActivity().onBackPressed()
+                goToApp()
             }
 
             binding.errorMessage.isVisible = it.showError
@@ -63,7 +62,15 @@ class LoginFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+
+        if (_binding != null) {
+            _binding = null
+        }
+    }
+
+    private fun goToApp() {
+        callback.remove()
+        requireActivity().onBackPressed()
     }
 
     companion object {
