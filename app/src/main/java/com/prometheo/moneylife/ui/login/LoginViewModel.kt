@@ -10,6 +10,7 @@ import com.prometheo.moneylife.data.preferences.PrefsImp
 import com.prometheo.moneylife.data.services.UserService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,18 +35,22 @@ class LoginViewModel @Inject constructor(
         _uiModel.value = _uiModel.value?.copy(showLoading = true, showError = false)
 
         viewModelScope.launch {
-            val response = userService.login(UserBody(email, password))
+            try {
+                val response = userService.login(UserBody(email, password))
 
-            if (response.isSuccessful && response.body()?.errorMessage.isNullOrBlank()) {
-                prefs.userName = email
-                prefs.password = password
+                if (response.isSuccessful && response.body()?.errorMessage.isNullOrBlank()) {
+                    prefs.userName = email
+                    prefs.password = password
 
-                _uiModel.value = _uiModel.value?.copy(
-                    showLoading = false,
-                    showError = false,
-                    goToApp = true
-                )
-            } else {
+                    _uiModel.value = _uiModel.value?.copy(
+                        showLoading = false,
+                        showError = false,
+                        goToApp = true
+                    )
+                } else {
+                    _uiModel.postValue(uiModel.value?.copy(showLoading = false, showError = true))
+                }
+            } catch (err: Throwable) {
                 _uiModel.postValue(uiModel.value?.copy(showLoading = false, showError = true))
             }
         }

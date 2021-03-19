@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-    private val vm: SignupViewModel by viewModels()
+    private val vm: LoginViewModel by viewModels()
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -51,8 +51,8 @@ class LoginFragment : Fragment() {
                 goToApp()
             }
 
-            if (it.goToLogin) {
-                goToLogin()
+            if (it.goToSignup) {
+                goToSignup()
             }
 
             binding.errorMessage.isVisible = it.showError
@@ -60,11 +60,11 @@ class LoginFragment : Fragment() {
         })
 
         binding.loginButton.setOnClickListener {
-            vm.signup(binding.emailField.text.toString(), binding.passwordField.text.toString())
+            vm.login(binding.emailField.text.toString(), binding.passwordField.text.toString())
         }
 
         binding.goToSignup.setOnClickListener {
-            vm.goToLogin()
+            vm.goToSignup()
         }
     }
 
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
         requireActivity().onBackPressed()
     }
 
-    private fun goToLogin() {
+    private fun goToSignup() {
         callback.remove()
         parentFragmentManager.commit {
             replace(android.R.id.content, SignupFragment.newInstance())
