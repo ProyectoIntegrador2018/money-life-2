@@ -20,4 +20,6 @@ interface TurnService {
     @POST("/turno/interemedio/")
     suspend fun refresh(@Body userIdBody: UserIdBody): Response<List<Turn>>
 
+    @PUT("/terminar/juego/")
+    suspend fun endGame(@Body userIdBody: UserIdBody): Response<Message>
 }
