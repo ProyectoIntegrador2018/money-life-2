@@ -39,6 +39,7 @@ class LoginViewModel @Inject constructor(
                 val response = userService.login(UserBody(email, password))
 
                 if (response.isSuccessful && response.body()?.errorMessage.isNullOrBlank()) {
+                    prefs.userId = response.body()!!.userId!!
                     prefs.userName = email
                     prefs.password = password
 
