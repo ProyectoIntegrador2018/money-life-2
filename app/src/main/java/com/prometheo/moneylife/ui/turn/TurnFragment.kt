@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentTurnBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.math.RoundingMode
+import kotlin.math.round
 
 @AndroidEntryPoint
 class TurnFragment : Fragment() {
@@ -34,10 +38,13 @@ class TurnFragment : Fragment() {
         binding.cvLaboral.setOnClickListener { laboralButtonPressed() }
         binding.fabNextTurn.setOnClickListener { nextTurnButtonPressed() }
         vm.turnData.observe(viewLifecycleOwner, Observer { turnData ->
-            binding.tvWeekNumber.text = turnData.turnNumber.toString() //TODO: add string resources
-            binding.tvIncomeAmount.text = turnData.income.toString()
-            binding.tvBalanceAmount.text = turnData.balance.toString()
-            binding.tvExpensesAmount.text = turnData.expenses.toString()
+            binding.tvWeekNumber.text = getString(R.string.tv_week_number, turnData.turnNumber)
+            binding.tvIncomeAmount.text = getString(R.string.tv_money, turnData.income.toBigDecimal().setScale(2, RoundingMode.UP).toDouble())
+            binding.tvBalanceAmount.text = getString(R.string.tv_money, turnData.balance)
+            binding.tvExpensesAmount.text = getString(R.string.tv_money, turnData.expenses)
+        })
+        vm.loading.observe(viewLifecycleOwner, Observer { loading ->
+            binding.loadingIndicator.isVisible = loading
         })
     }
 

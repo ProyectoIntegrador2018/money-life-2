@@ -6,14 +6,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_turn">Turno</string>
-    <string name="tv_week_number">Semana 1</string>
+    <string name="tv_week_number">Semana %1$d</string>
     <string name="fab_next_turn_title">Terminar Turno</string>
     <string name="tv_income_title">Ingresos Mensuales</string>
-    <string name="tv_income_amount">$15,000.00</string>
+    <string name="tv_money">$ %1$.2f</string>
     <string name="tv_balance_title">Saldo en Efectivo</string>
-    <string name="tv_balance_amount">$17,000.00</string>
     <string name="tv_expenses_title">Egresos Mensuales</string>
-    <string name="tv_expenses_amount">$8,000.00</string>
     <string name="card_invest_title">Inversión</string>
     <string name="card_fun_title">Diversión</string>
     <string name="card_laboral_title">Laborales</string>

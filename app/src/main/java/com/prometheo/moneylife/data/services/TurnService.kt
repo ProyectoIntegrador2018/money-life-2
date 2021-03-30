@@ -17,7 +17,7 @@ interface TurnService {
     @POST("/turno/inicio/")
     suspend fun nextTurn(@Body userIdBody: UserIdBody): Response<List<Turn>>
 
-    @POST("/turno/interemedio/")
+    @POST("/turno/intermedio/")
     suspend fun getTurnData(@Body userIdBody: UserIdBody): Response<List<Turn>>
 
 }
