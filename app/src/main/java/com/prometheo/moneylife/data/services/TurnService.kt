@@ -15,10 +15,10 @@ interface TurnService {
     suspend fun selectTurnActions(@Body turnActionBody: TurnActionBody): Response<List<Turn>>
 
     @POST("/turno/inicio/")
-    suspend fun init(@Body userIdBody: UserIdBody): Response<List<Turn>>
+    suspend fun nextTurn(@Body userIdBody: UserIdBody): Response<List<Turn>>
 
-    @POST("/turno/interemedio/")
-    suspend fun refresh(@Body userIdBody: UserIdBody): Response<List<Turn>>
+    @POST("/turno/intermedio/")
+    suspend fun getTurnData(@Body userIdBody: UserIdBody): Response<List<Turn>>
 
     @PUT("/terminar/juego/")
     suspend fun endGame(@Body userIdBody: UserIdBody): Response<Message>

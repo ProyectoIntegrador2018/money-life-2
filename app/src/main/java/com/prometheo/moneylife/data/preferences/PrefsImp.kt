@@ -12,6 +12,12 @@ class PrefsImp @Inject constructor(
 ): Prefs {
     private val sharedPrefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
 
+    override var userId: Int
+        get() = sharedPrefs.getInt("userId", 0)
+        set(value) {
+            sharedPrefs.edit { putInt("userId", value) }
+        }
+
     override var userName: String?
         get() = sharedPrefs.getString("userName", null)
         set(value) {

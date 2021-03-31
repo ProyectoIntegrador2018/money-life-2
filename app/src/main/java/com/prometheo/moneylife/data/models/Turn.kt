@@ -1,7 +1,9 @@
 package com.prometheo.moneylife.data.models
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Turn(
         @field:Json(name = "id") val turnId: Int,
         @field:Json(name = "NumeroTurnos") val turnNumber: Int,
