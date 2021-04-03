@@ -23,4 +23,8 @@
     <string name="signup_button">Crear Cuenta</string>
     <string name="go_to_login_button">Ya tienes una cuenta? Inicia sesión</string>
     <string name="go_to_signup_button">No tienes una cuenta? Crear cuenta</string>
+    <string name="amount_placeholder">Monto</string>
+    <string name="invest_button">INVERTIR</string>
+    <string name="withdraw_button">RETIRAR</string>
+    <string name="withdraw_all_button">RETIRAR TODO</string>
 </resources>
