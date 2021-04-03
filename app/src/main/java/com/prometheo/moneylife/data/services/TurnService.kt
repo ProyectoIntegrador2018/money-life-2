@@ -12,7 +12,7 @@ interface TurnService {
     suspend fun getTurnActions(@Body userIdBody: UserIdBody): Response<List<TurnAction>>
 
     @PUT("/pregunta/afectaPreguntas/")
-    suspend fun selectTurnActions(@Body turnActionBody: TurnActionBody): Response<List<Turn>>
+    suspend fun selectTurnAction(@Body turnActionBody: TurnActionBody): Response<List<Turn>>
 
     @POST("/turno/inicio/")
     suspend fun nextTurn(@Body userIdBody: UserIdBody): Response<List<Turn>>
