@@ -38,16 +38,10 @@
 
             <TextView
                 android:id="@+id/tvWeekNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"
+                style="@style/ViewTitle"
+                tools:text="Semana 0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Semana 0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvIncomeExpenses"
@@ -73,61 +67,38 @@
 
                     <TextView
                         android:id="@+id/tvIncome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:text="@string/tv_income_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        style="@style/TurnSubtitle"
+                        android:text="@string/tv_income_title" />
 
                     <TextView
                         android:id="@+id/tvIncomeAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
+                        style="@style/TurnMoney"
                         tools:text="$10,000" />
 
                     <TextView
                         android:id="@+id/tvBalance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="#FFFFFF"
+                        style="@style/TurnSubtitle"
                         android:text="@string/tv_balance_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="16dp"/>
 
                     <TextView
                         android:id="@+id/tvBalanceAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
+                        style="@style/TurnMoney"
+                        android:text="@string/tv_balance_title"
+                        android:layout_marginTop="16dp"
                         tools:text="$10,000" />
 
                     <TextView
                         android:id="@+id/tvExpenses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="#FFFFFF"
+                        style="@style/TurnSubtitle"
                         android:text="@string/tv_expenses_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="16dp"/>
 
                     <TextView
                         android:id="@+id/tvExpensesAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
+                        style="@style/TurnMoney"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/tv_expenses_title"
                         tools:text="$10,000" />
                 </LinearLayout>
 
@@ -135,8 +106,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvInvest"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="4dp"
@@ -155,8 +125,8 @@
 
                     <ImageView
                         android:id="@+id/ivInvest"
+                        style="@style/TurnActionCardImage"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background"
                         app:layout_constraintBottom_toTopOf="@+id/tvInvest"
@@ -178,12 +148,9 @@
 
                     <TextView
                         android:id="@+id/tvInvest"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_invest_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:layout_width="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -194,8 +161,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvFun"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="16dp"
@@ -213,8 +179,8 @@
 
                     <ImageView
                         android:id="@+id/ivFun"
+                        style="@style/TurnActionCardImage"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background"
                         app:layout_constraintBottom_toTopOf="@+id/tvFun"
@@ -236,12 +202,9 @@
 
                     <TextView
                         android:id="@+id/tvFun"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_fun_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:layout_width="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -252,8 +215,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvWork"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
@@ -272,8 +234,8 @@
 
                     <ImageView
                         android:id="@+id/ivWork"
+                        style="@style/TurnActionCardImage"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background"
                         app:layout_constraintBottom_toTopOf="@+id/tvWork"
@@ -295,12 +257,9 @@
 
                     <TextView
                         android:id="@+id/tvWork"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_laboral_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:layout_width="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -311,8 +270,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvGoods"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
@@ -330,8 +288,8 @@
 
                     <ImageView
                         android:id="@+id/ivGoods"
+                        style="@style/TurnActionCardImage"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher_background"
                         app:layout_constraintBottom_toTopOf="@+id/tvGoods"
@@ -353,12 +311,9 @@
 
                     <TextView
                         android:id="@+id/tvGoods"
+                        style="@style/TurnActionCardText"
+                        android:text="@string/card_personal_property_title"   
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="@string/card_personal_property_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />

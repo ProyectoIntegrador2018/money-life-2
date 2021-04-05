@@ -17,4 +17,5 @@
     <color name="green_leaf">#2D722D</color>
     <color name="green_accept">#31B518</color>
     <color name="red_light">#FF3333</color>
+    <color name="error">#FF0000</color>
 </resources>
