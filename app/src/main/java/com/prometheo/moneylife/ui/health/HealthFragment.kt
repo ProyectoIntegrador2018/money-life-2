@@ -42,7 +42,14 @@ class HealthFragment : Fragment() {
             })
         })
         vm.loading.observe(viewLifecycleOwner, Observer { loading ->
+            binding.rvHealth.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
+            binding.shimmerViewContainer.isVisible = loading
+            if (loading) {
+                binding.shimmerViewContainer.startShimmer()
+            } else {
+                binding.shimmerViewContainer.stopShimmer()
+            }
         })
     }
 
