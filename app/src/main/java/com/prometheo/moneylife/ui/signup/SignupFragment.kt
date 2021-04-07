@@ -59,6 +59,9 @@ class SignupFragment : Fragment() {
             binding.loadingIndicator.isVisible = it.showLoading
         })
 
+        binding.goToLogin.setOnClickListener {
+            vm.goToLogin()
+        }
         binding.signupButton.setOnClickListener {
             vm.signup(binding.emailField.text.toString(), binding.passwordField.text.toString())
         }
