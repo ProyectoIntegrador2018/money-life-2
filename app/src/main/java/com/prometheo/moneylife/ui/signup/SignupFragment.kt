@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.prometheo.moneylife.databinding.FragmentSignupBinding
 import com.prometheo.moneylife.ui.login.LoginFragment
-import com.prometheo.moneylife.ui.login.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,9 +61,15 @@ class SignupFragment : Fragment() {
         binding.goToLogin.setOnClickListener {
             vm.goToLogin()
         }
+
         binding.signupButton.setOnClickListener {
             vm.signup(binding.emailField.text.toString(), binding.passwordField.text.toString())
         }
+    }
+
+    override fun onPause() {
+        callback.remove()
+        super.onPause()
     }
 
     override fun onDestroyView() {

@@ -68,6 +68,11 @@ class LoginFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        callback.remove()
+        super.onPause()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
 
