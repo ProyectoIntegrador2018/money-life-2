@@ -1,5 +1,6 @@
 package com.prometheo.moneylife.ui.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.prometheo.moneylife.MainActivity
 import com.prometheo.moneylife.databinding.FragmentSignupBinding
 import com.prometheo.moneylife.ui.login.LoginFragment
-import com.prometheo.moneylife.ui.login.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,9 +60,18 @@ class SignupFragment : Fragment() {
             binding.loadingIndicator.isVisible = it.showLoading
         })
 
+        binding.goToLogin.setOnClickListener {
+            vm.goToLogin()
+        }
+
         binding.signupButton.setOnClickListener {
             vm.signup(binding.emailField.text.toString(), binding.passwordField.text.toString())
         }
+    }
+
+    override fun onPause() {
+        callback.remove()
+        super.onPause()
     }
 
     override fun onDestroyView() {
@@ -73,8 +83,8 @@ class SignupFragment : Fragment() {
     }
 
     private fun goToApp() {
-        callback.remove()
-        requireActivity().onBackPressed()
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToLogin() {

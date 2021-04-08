@@ -1,4 +1,4 @@
-package com.prometheo.moneylife.ui.login
+package com.prometheo.moneylife.ui.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -43,6 +43,7 @@ class SignupViewModel @Inject constructor(
                 if (response.isSuccessful && response.body()?.errorMessage.isNullOrBlank()) {
                     prefs.userName = email
                     prefs.password = password
+                    prefs.userId = response.body()?.userId!!
 
                     _uiModel.value = _uiModel.value?.copy(
                         showLoading = false,
