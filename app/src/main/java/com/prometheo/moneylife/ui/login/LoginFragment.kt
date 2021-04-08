@@ -1,5 +1,6 @@
 package com.prometheo.moneylife.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,9 @@ import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.fragment.app.commitNow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.prometheo.moneylife.MainActivity
 import com.prometheo.moneylife.databinding.FragmentLoginBinding
 import com.prometheo.moneylife.ui.signup.SignupFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -82,8 +83,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToApp() {
-        callback.remove()
-        requireActivity().onBackPressed()
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToSignup() {
