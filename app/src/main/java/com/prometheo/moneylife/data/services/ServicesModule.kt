@@ -15,12 +15,11 @@ object ServicesModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         val okHttpClient = OkHttpClient.Builder().readTimeout(25, TimeUnit.SECONDS).build()
-        val retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl("https://moneylifev1.azurewebsites.net")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)
             .build()
-        return retrofit
     }
 
     @Provides
