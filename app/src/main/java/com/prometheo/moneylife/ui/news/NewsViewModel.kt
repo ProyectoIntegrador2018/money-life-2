@@ -25,4 +25,5 @@ class NewsViewModel @Inject constructor (
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
+
 }

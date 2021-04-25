@@ -111,7 +111,7 @@ class TurnViewModel  @Inject constructor(
                     turnEventDao.insert( response.body()?.first()!! )
                 }
             } catch ( err: Throwable ) {
-                //TODO: Add error message
+                message.value = "Error al cargar noticias"
             }
             _loading.value = false
         }

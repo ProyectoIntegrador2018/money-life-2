@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.databinding.FragmentNewsBinding
+import com.prometheo.moneylife.ui.turn.TurnViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,15 +41,20 @@ class NewsFragment : Fragment() {
             })
         })
 
-        /*vm.loading.observe (viewLifecycleOwner, Observer { loading ->
-            binding.rvNews.isVisible = !loading
+        vm.loading.observe (viewLifecycleOwner, Observer { loading ->
+            /* binding.rvNews.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
             binding.shimmerViewContainer.isVisible = loading
             if ( loading ) {
                 binding.shimmerViewContainer.startShimmer()
             } else {
                 binding.shimmerViewContainer.stopShimmer()
-            }
-        }) */
+            } */
+
+            binding.rvNews.isVisible = true
+            binding.loadingIndicator.isVisible = false
+            binding.shimmerViewContainer.isVisible = false
+            binding.shimmerViewContainer.stopShimmer()
+        })
     }
 }
