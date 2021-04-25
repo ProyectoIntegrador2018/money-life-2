@@ -22,8 +22,14 @@ class NewsViewModel @Inject constructor (
 
     val turnEvents: LiveData<List<TurnEvent>> = db.turnEventDao().observeAll()
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     //TODO: Mover a TurnViewModel?
     fun updateTurnEvents () {
+
+        _loading.value = true
+
         viewModelScope.launch {
             try {
                 val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
@@ -33,6 +39,7 @@ class NewsViewModel @Inject constructor (
             } catch ( err: Throwable ) {
                 //TODO: Add error message
             }
+            _loading.value = false
         }
     }
 
