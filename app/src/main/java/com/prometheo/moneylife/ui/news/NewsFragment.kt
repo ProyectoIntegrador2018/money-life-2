@@ -40,7 +40,7 @@ class NewsFragment : Fragment() {
             })
         })
 
-        vm.loading.observe (viewLifecycleOwner, Observer { loading ->
+        /*vm.loading.observe (viewLifecycleOwner, Observer { loading ->
             binding.rvNews.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
             binding.shimmerViewContainer.isVisible = loading
@@ -49,6 +49,6 @@ class NewsFragment : Fragment() {
             } else {
                 binding.shimmerViewContainer.stopShimmer()
             }
-        })
+        }) */
     }
 }

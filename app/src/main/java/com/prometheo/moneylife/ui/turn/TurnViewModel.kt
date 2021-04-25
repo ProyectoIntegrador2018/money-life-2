@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prometheo.moneylife.data.models.*
 import com.prometheo.moneylife.data.preferences.Prefs
+import com.prometheo.moneylife.data.room.TurnEventDao
 import com.prometheo.moneylife.data.services.TurnService
+import com.prometheo.moneylife.ui.news.NewsViewModel
 import com.prometheo.moneylife.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TurnViewModel  @Inject constructor(
     private val turnService: TurnService,
-    private val prefs: Prefs
+    private val prefs: Prefs,
+    private val turnEventDao: TurnEventDao
 ) : ViewModel() {
 
     private val _turnData = MutableLiveData<Turn>()
@@ -60,6 +63,7 @@ class TurnViewModel  @Inject constructor(
                 if (response.isSuccessful) {
                     getTurnActions()
                     _turnData.value = response.body()!![0]
+                    updateTurnEvents()
                 }
             } catch (err: Throwable) {
                 message.value = err.message
@@ -92,6 +96,22 @@ class TurnViewModel  @Inject constructor(
                 }
             } catch (err: Throwable) {
                 message.value = "No cuentas con los requisitos necesarios para esta acción"
+            }
+            _loading.value = false
+        }
+    }
+
+    private fun updateTurnEvents () {
+        _loading.value = true
+
+        viewModelScope.launch {
+            try {
+                val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
+                if ( response.isSuccessful ) {
+                    turnEventDao.insert( response.body()?.first()!! )
+                }
+            } catch ( err: Throwable ) {
+                //TODO: Add error message
             }
             _loading.value = false
         }
