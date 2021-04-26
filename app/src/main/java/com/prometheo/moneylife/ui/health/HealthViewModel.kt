@@ -30,11 +30,13 @@ class HealthViewModel @Inject constructor(
                 val response = happinessService.getHappiness ( UserIdBody(prefs.userId) )
                 if (response.isSuccessful) {
                     _happinessData.value = response.body()
-                    println("SI LLEGUE")
+
+                    _happinessData.value?.map { item ->
+                        item.percentage = item.percentage.drop(1) + " %"
+                    }
                 }
             } catch (err: Throwable) {
                 //TODO: Error toast
-                println("NO LLEGUE")
             }
             _loading.value = false
         }
