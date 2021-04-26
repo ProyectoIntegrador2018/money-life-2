@@ -41,4 +41,9 @@ object ServicesModule {
     fun provideHappinessService(
         retrofit: Retrofit
     ): HappinessService = retrofit.create(HappinessService::class.java)
+
+    @Provides
+    fun provideInvestmentService(
+        retrofit: Retrofit
+    ): InvestmentsService = retrofit.create(InvestmentsService::class.java)
 }

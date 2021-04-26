@@ -28,4 +28,7 @@
     <string name="withdraw_button">RETIRAR</string>
     <string name="withdraw_all_button">RETIRAR TODO</string>
     <string name="title_health">Salud</string>
+    <string name="fab_new_investment_text">NUEVA INVERSION</string>
+    <string name="title_investments">Inversiones</string>
+    <string name="cancel_button">cancelar</string>
 </resources>
