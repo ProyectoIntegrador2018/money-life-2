@@ -18,8 +18,8 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_weight="0.2"
-            app:srcCompat="@drawable/ic_baseline_block_24"
-            tools:srcCompat="@drawable/ic_baseline_block_24" />
+            android:src="@drawable/health_card_icon"
+            android:scaleType="fitCenter"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
