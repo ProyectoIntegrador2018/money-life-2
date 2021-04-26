@@ -8,11 +8,13 @@ import com.prometheo.moneylife.data.models.*
 import com.prometheo.moneylife.data.preferences.Prefs
 import com.prometheo.moneylife.data.room.TurnEventDao
 import com.prometheo.moneylife.data.services.TurnService
-import com.prometheo.moneylife.ui.news.NewsViewModel
 import com.prometheo.moneylife.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
 
 @HiltViewModel
 class TurnViewModel  @Inject constructor(
@@ -108,10 +110,14 @@ class TurnViewModel  @Inject constructor(
             try {
                 val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
                 if ( response.isSuccessful ) {
-                    turnEventDao.insert( response.body()?.first()!! )
+                    withContext (Dispatchers.IO) {
+                        turnEventDao.insert( response.body()?.first()!! )
+                    }
                 }
             } catch ( err: Throwable ) {
                 message.value = "Error al cargar noticias"
+                println("Err: ")
+                println(err)
             }
             _loading.value = false
         }
