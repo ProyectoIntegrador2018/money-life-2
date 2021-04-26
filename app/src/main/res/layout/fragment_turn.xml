@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/app_background"
-    tools:context=".ui.turn.TurnFragment"
-    >
+    tools:context=".ui.turn.TurnFragment">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <include layout="@layout/placeholder_turn_view" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ScrollView
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,22 +32,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="80dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvWeekNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                style="@style/ViewTitle"
                 tools:text="Semana 0"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,229 +67,221 @@
 
                     <TextView
                         android:id="@+id/tvIncome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        android:text="@string/tv_income_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        style="@style/TurnSubtitle"
+                        android:text="@string/tv_income_title" />
 
                     <TextView
                         android:id="@+id/tvIncomeAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        tools:text="$10,000"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/TurnMoney"
+                        tools:text="$10,000" />
 
                     <TextView
                         android:id="@+id/tvBalance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
+                        style="@style/TurnSubtitle"
                         android:text="@string/tv_balance_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:layout_marginTop="16dp"/>
 
                     <TextView
                         android:id="@+id/tvBalanceAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        tools:text="$10,000"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/TurnMoney"
+                        android:text="@string/tv_balance_title"
+                        tools:text="$10,000" />
 
                     <TextView
                         android:id="@+id/tvExpenses"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
+                        style="@style/TurnSubtitle"
                         android:text="@string/tv_expenses_title"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:layout_marginTop="16dp"/>
 
                     <TextView
                         android:id="@+id/tvExpensesAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFFFFF"
-                        tools:text="$10,000"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/TurnMoney"
+                        android:text="@string/tv_expenses_title"
+                        tools:text="$10,000" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvInvest"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="4dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toStartOf="@+id/cvFun"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvIncomeExpenses">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivInvest"
-                        android:layout_width="match_parent"
+                        style="@style/TurnActionCardImage"
+                        android:src="@drawable/ic_launcher_background"
+                        app:layout_constraintBottom_toTopOf="@+id/tvInvest"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/ivInvestBlock"
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:src="@drawable/ic_baseline_block_24"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivInvest"
+                        app:layout_constraintEnd_toEndOf="@+id/ivInvest"
+                        app:layout_constraintStart_toStartOf="@+id/ivInvest"
+                        app:layout_constraintTop_toTopOf="@+id/ivInvest" />
 
                     <TextView
                         android:id="@+id/tvInvest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_invest_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        tools:ignore="MissingConstraints" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvFun"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cvInvest"
                 app:layout_constraintTop_toBottomOf="@+id/cvIncomeExpenses">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivFun"
-                        android:layout_width="match_parent"
+                        style="@style/TurnActionCardImage"
+                        android:src="@drawable/ic_launcher_background"
+                        app:layout_constraintBottom_toTopOf="@+id/tvFun"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/ivFunBlock"
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:src="@drawable/ic_baseline_block_24"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivFun"
+                        app:layout_constraintEnd_toEndOf="@+id/ivFun"
+                        app:layout_constraintStart_toStartOf="@+id/ivFun"
+                        app:layout_constraintTop_toTopOf="@+id/ivFun" />
 
                     <TextView
                         android:id="@+id/tvFun"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_fun_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        tools:ignore="MissingConstraints" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvLaboral"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:id="@+id/cvWork"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toEndOf="@+id/cvPersonalProperty"
+                app:layout_constraintStart_toEndOf="@+id/cvGoods"
                 app:layout_constraintTop_toBottomOf="@+id/cvFun">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/ivLaboral"
-                        android:layout_width="match_parent"
+                        android:id="@+id/ivWork"
+                        style="@style/TurnActionCardImage"
+                        android:src="@drawable/ic_launcher_background"
+                        app:layout_constraintBottom_toTopOf="@+id/tvWork"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/ivWorkBlock"
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:src="@drawable/ic_baseline_block_24"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivWork"
+                        app:layout_constraintEnd_toEndOf="@+id/ivWork"
+                        app:layout_constraintStart_toStartOf="@+id/ivWork"
+                        app:layout_constraintTop_toTopOf="@+id/ivWork" />
 
                     <TextView
-                        android:id="@+id/tvLaboral"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:id="@+id/tvWork"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_laboral_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        tools:ignore="MissingConstraints" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvPersonalProperty"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
+                android:id="@+id/cvGoods"
+                style="@style/TurnActionCard"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintEnd_toStartOf="@+id/cvLaboral"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/cvWork"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvInvest">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/ivPersonalProperty"
-                        android:layout_width="match_parent"
+                        android:id="@+id/ivGoods"
+                        style="@style/TurnActionCardImage"
+                        android:src="@drawable/ic_launcher_background"
+                        app:layout_constraintBottom_toTopOf="@+id/tvGoods"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/ivGoodsBlock"
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                        tools:src="@tools:sample/avatars" />
+                        android:src="@drawable/ic_baseline_block_24"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivGoods"
+                        app:layout_constraintEnd_toEndOf="@+id/ivGoods"
+                        app:layout_constraintStart_toStartOf="@+id/ivGoods"
+                        app:layout_constraintTop_toTopOf="@+id/ivGoods" />
 
                     <TextView
-                        android:id="@+id/tvPersonalProperty"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:id="@+id/tvGoods"
+                        style="@style/TurnActionCardText"
                         android:text="@string/card_personal_property_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        tools:ignore="MissingConstraints" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
 

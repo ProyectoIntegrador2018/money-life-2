@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_health"
+        android:name="com.prometheo.moneylife.ui.health.HealthFragment"
+        android:label="@string/title_health"
+        tools:layout="@layout/fragment_health" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.prometheo.moneylife.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
