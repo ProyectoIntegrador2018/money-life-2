@@ -11,7 +11,6 @@ class NewsGroupieItem (
 ) : BindableItem<ItemNewsBinding>() {
 
     override fun bind(viewBinding: ItemNewsBinding, position: Int) = with(viewBinding){
-        // TODO: Check date
         tvNewsText.text = turnEvent.description.toString()
     }
 

@@ -114,12 +114,12 @@ class TurnViewModel  @Inject constructor(
                 if ( response.isSuccessful ) {
                     withContext (Dispatchers.IO) {
                         turnEventDao.insert( response.body()?.first()!! )
+
+
                     }
                 }
             } catch ( err: Throwable ) {
                 message.value = "Error al cargar noticias"
-                println("Err: ")
-                println(err)
             }
             LoadingLiveData.get().setLoading ( false )
             _loading.value = false
