@@ -24,4 +24,6 @@
     <string name="go_to_login_button">Ya tienes una cuenta? Inicia sesión</string>
     <string name="go_to_signup_button">No tienes una cuenta? Crear cuenta</string>
     <string name="title_health">Salud</string>
+    <string name="title_news">Noticias</string>
+    <string name="news">Noticia</string>
 </resources>

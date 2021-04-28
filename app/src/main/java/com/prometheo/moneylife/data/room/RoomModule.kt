@@ -8,15 +8,22 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 object RoomModule {
+    @Singleton
     @Provides
-    fun provideDb(@ApplicationContext context : Context): RoomDatabase {
-        return Room.databaseBuilder(
+    fun provideDb(@ApplicationContext context : Context) =
+        Room.databaseBuilder(
             context,
             AppDatabase::class.java, "app-database"
         ).build()
-    }
+
+    @Singleton
+    @Provides
+    fun provideTurnEventDao (db: AppDatabase) =
+        db.turnEventDao()
 }
