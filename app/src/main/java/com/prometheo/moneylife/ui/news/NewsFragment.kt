@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.prometheo.moneylife.data.liveData.LoadingLiveData
 import com.prometheo.moneylife.databinding.FragmentNewsBinding
 import com.prometheo.moneylife.ui.turn.TurnViewModel
 import com.xwray.groupie.GroupAdapter
@@ -33,6 +34,7 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated ( view: View, savedInstanceState: Bundle? ) {
         super.onViewCreated (view, savedInstanceState)
+        LoadingLiveData.get().setLoading ( false )
         vm.turnEvents.observe( viewLifecycleOwner, Observer { turnEvents ->
             binding.rvNews.layoutManager = LinearLayoutManager ( context, LinearLayoutManager.VERTICAL, false)
             binding.rvNews.adapter = adapter
@@ -41,15 +43,16 @@ class NewsFragment : Fragment() {
             })
         })
 
-        vm.loading.observe (viewLifecycleOwner, Observer { loading ->
-            /* binding.rvNews.isVisible = !loading
+
+        LoadingLiveData.get().loading.observe ( viewLifecycleOwner, Observer { loading ->
+            binding.rvNews.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
             binding.shimmerViewContainer.isVisible = loading
             if ( loading ) {
                 binding.shimmerViewContainer.startShimmer()
             } else {
                 binding.shimmerViewContainer.stopShimmer()
-            } */
+            }
 
             binding.rvNews.isVisible = true
             binding.loadingIndicator.isVisible = false

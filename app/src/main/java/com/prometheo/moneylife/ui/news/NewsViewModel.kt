@@ -20,10 +20,5 @@ class NewsViewModel @Inject constructor (
     private val prefs: Prefs,
     private val turnEventDao: TurnEventDao
 ) : ViewModel() {
-
     val turnEvents: LiveData<List<TurnEvent>> = turnEventDao.observeAll()
-
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> = _loading
-
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prometheo.moneylife.data.liveData.LoadingLiveData
 import com.prometheo.moneylife.data.models.*
 import com.prometheo.moneylife.data.preferences.Prefs
 import com.prometheo.moneylife.data.room.TurnEventDao
@@ -105,6 +106,7 @@ class TurnViewModel  @Inject constructor(
 
     private fun updateTurnEvents () {
         _loading.value = true
+        LoadingLiveData.get().setLoading ( true )
 
         viewModelScope.launch {
             try {
@@ -119,6 +121,7 @@ class TurnViewModel  @Inject constructor(
                 println("Err: ")
                 println(err)
             }
+            LoadingLiveData.get().setLoading ( false )
             _loading.value = false
         }
     }
