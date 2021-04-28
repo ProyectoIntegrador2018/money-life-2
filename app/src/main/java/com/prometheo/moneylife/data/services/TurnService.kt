@@ -9,7 +9,7 @@ import retrofit2.http.PUT
 
 interface TurnService {
 
-    @GET("/evento/inicioTurno/")
+    @POST("/evento/inicioTurno/")
     suspend fun getTurnEvents(@Body userIdBody: UserIdBody): Response<List<TurnEvent>>
 
     @POST("/pregunta/getPreguntas/")

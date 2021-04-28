@@ -4,18 +4,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prometheo.moneylife.data.liveData.LoadingLiveData
 import com.prometheo.moneylife.data.models.*
 import com.prometheo.moneylife.data.preferences.Prefs
+import com.prometheo.moneylife.data.room.TurnEventDao
 import com.prometheo.moneylife.data.services.TurnService
 import com.prometheo.moneylife.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
+
 
 @HiltViewModel
 class TurnViewModel  @Inject constructor(
     private val turnService: TurnService,
-    private val prefs: Prefs
+    private val prefs: Prefs,
+    private val turnEventDao: TurnEventDao
 ) : ViewModel() {
 
     private val _turnData = MutableLiveData<Turn>()
@@ -60,6 +66,7 @@ class TurnViewModel  @Inject constructor(
                 if (response.isSuccessful) {
                     getTurnActions()
                     _turnData.value = response.body()!![0]
+                    updateTurnEvents()
                 }
             } catch (err: Throwable) {
                 message.value = err.message
@@ -93,6 +100,28 @@ class TurnViewModel  @Inject constructor(
             } catch (err: Throwable) {
                 message.value = "No cuentas con los requisitos necesarios para esta acción"
             }
+            _loading.value = false
+        }
+    }
+
+    private fun updateTurnEvents () {
+        _loading.value = true
+        LoadingLiveData.get().setLoading ( true )
+
+        viewModelScope.launch {
+            try {
+                val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
+                if ( response.isSuccessful ) {
+                    withContext (Dispatchers.IO) {
+                        turnEventDao.insert( response.body()?.first()!! )
+
+
+                    }
+                }
+            } catch ( err: Throwable ) {
+                message.value = "Error al cargar noticias"
+            }
+            LoadingLiveData.get().setLoading ( false )
             _loading.value = false
         }
     }

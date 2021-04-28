@@ -44,13 +44,13 @@ class TurnFragment : Fragment() {
         binding.cvGoods.setOnClickListener { showDialog(goodsActions) }
         binding.cvWork.setOnClickListener { showDialog(workActions) }
         binding.fabNextTurn.setOnClickListener { vm.nextTurn() }
-        vm.turnData.observe(viewLifecycleOwner, Observer { turnData ->
+        vm.turnData.observe(viewLifecycleOwner, { turnData ->
             binding.tvWeekNumber.text = getString(R.string.tv_week_number, turnData.turnNumber)
             binding.tvIncomeAmount.text = getString(R.string.tv_money, turnData.income)
             binding.tvBalanceAmount.text = getString(R.string.tv_money, turnData.balance)
             binding.tvExpensesAmount.text = getString(R.string.tv_money, turnData.expenses)
         })
-        vm.turnActions.observe(viewLifecycleOwner, Observer { actions ->
+        vm.turnActions.observe(viewLifecycleOwner, { actions ->
             investActions = actions.filter { it.category == TurnActionCategory.INVESTMENT }
             funActions = actions.filter { it.category == TurnActionCategory.FUN }
             goodsActions = actions.filter { it.category == TurnActionCategory.GOODS }
@@ -58,7 +58,7 @@ class TurnFragment : Fragment() {
 
             resetTurnActions()
         })
-        vm.loading.observe(viewLifecycleOwner, Observer { loading ->
+        vm.loading.observe(viewLifecycleOwner, { loading ->
             binding.content.isVisible = !loading
             binding.fabNextTurn.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
@@ -69,7 +69,7 @@ class TurnFragment : Fragment() {
                 binding.shimmerViewContainer.stopShimmer()
             }
         })
-        vm.getBlockTurnActionCategory().observe(viewLifecycleOwner, Observer { category ->
+        vm.getBlockTurnActionCategory().observe(viewLifecycleOwner, { category ->
             // Set that category to blocked
             when (category) {
                 TurnActionCategory.INVESTMENT -> {
@@ -90,7 +90,7 @@ class TurnFragment : Fragment() {
                 }
             }
         })
-        vm.getMessage().observe(viewLifecycleOwner, Observer { message ->
+        vm.getMessage().observe(viewLifecycleOwner, { message ->
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         })
     }

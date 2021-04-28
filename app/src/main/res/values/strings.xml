@@ -31,4 +31,6 @@
     <string name="fab_new_investment_text">NUEVA INVERSION</string>
     <string name="title_investments">Inversiones</string>
     <string name="cancel_button">cancelar</string>
+    <string name="title_news">Noticias</string>
+    <string name="news">Noticia</string>
 </resources>

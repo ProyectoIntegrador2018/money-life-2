@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_health" />
 
     <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.prometheo.moneylife.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
         android:id="@+id/navigation_investments"
         android:name="com.prometheo.moneylife.ui.investments.CurrentInvestmentsFragment"
         android:label="@string/title_investments"
