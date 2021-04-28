@@ -10,12 +10,12 @@ class OwnedInvestmentItem(
     private val id: Int,
     private val investmentName: String,
     private val category: String,
-    private val currentBalance: Number,
-    private val initialBalance: Number,
-    private val initialContribution: Number,
+    private val currentBalance: Float,
+    private val initialBalance: Float,
+    private val initialContribution: Float,
     private val onEditListener: () -> Unit = {},
-    private val onInvestListener: (amount: Number) -> Unit = {},
-    private val onWithdrawListener: (amount: Number) -> Unit = {},
+    private val onInvestListener: (amount: Float) -> Unit = {},
+    private val onWithdrawListener: (amount: Float) -> Unit = {},
 ) : BindableItem<ItemOwnedInvestmentBinding>() {
     private lateinit var _viewBinding: ItemOwnedInvestmentBinding
 
@@ -34,12 +34,12 @@ class OwnedInvestmentItem(
         }
 
         viewBinding.investButton.setOnClickListener {
-            val amount: Number = viewBinding.amountField.text.toString().toFloat()
+            val amount: Float = viewBinding.amountField.text.toString().toFloat()
             onInvestListener(amount)
         }
 
         viewBinding.withdrawButton.setOnClickListener {
-            val amount: Number = viewBinding.amountField.text.toString().toFloat()
+            val amount: Float = viewBinding.amountField.text.toString().toFloat()
             onWithdrawListener(amount)
         }
 

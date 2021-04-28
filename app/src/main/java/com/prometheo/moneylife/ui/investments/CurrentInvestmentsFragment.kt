@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.prometheo.moneylife.databinding.FragmentCurrentnvestmentsBinding
+import com.prometheo.moneylife.R
+import com.prometheo.moneylife.databinding.FragmentCurrentInvestmentsBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CurrentInvestmentsFragment : Fragment() {
 
     companion object {
@@ -21,7 +25,7 @@ class CurrentInvestmentsFragment : Fragment() {
 
     private val vm: CurrentInvestmentsViewModel by viewModels()
     private val adapter = GroupAdapter<GroupieViewHolder>()
-    private var _binding: FragmentCurrentnvestmentsBinding? = null
+    private var _binding: FragmentCurrentInvestmentsBinding? = null
     private val binding get() = _binding!!
 
     private var currentEditingInvestmentPosition: Int? = null
@@ -30,8 +34,8 @@ class CurrentInvestmentsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentCurrentnvestmentsBinding.inflate(inflater, container, false).apply {
+    ): View {
+        _binding = FragmentCurrentInvestmentsBinding.inflate(inflater, container, false).apply {
             rv.adapter = adapter
             rv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
@@ -44,8 +48,13 @@ class CurrentInvestmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.state.observe(viewLifecycleOwner, Observer { state ->
-            adapter.update(state.currentInvestments.mapIndexed { position, investment ->
+        vm.state.observe(viewLifecycleOwner, { state ->
+            binding.loadingIndicator.isVisible = state.loading
+        })
+
+        vm.currentInvestments.observe(viewLifecycleOwner, { currentInvestments ->
+            binding.emptyMessage.isVisible = currentInvestments.isEmpty()
+            adapter.update(currentInvestments.mapIndexed { position, investment ->
 
                 OwnedInvestmentItem(
                     id = investment.id,
@@ -77,7 +86,7 @@ class CurrentInvestmentsFragment : Fragment() {
 
     private fun openNewInvestmentScreen() {
         parentFragmentManager.commit {
-            add(android.R.id.content, AvailableInvestmentsFragment.newInstance())
+            add(R.id.nav_host_fragment, AvailableInvestmentsFragment.newInstance())
             addToBackStack(null)
         }
     }

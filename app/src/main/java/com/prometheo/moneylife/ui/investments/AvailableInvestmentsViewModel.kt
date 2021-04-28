@@ -20,10 +20,12 @@ class AvailableInvestmentsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableLiveData<UiModel>(
-        UiModel(loading = false, error = false, availableInvestments = emptyList(), transactionComplete = false)
+        UiModel(loading = false, error = false, transactionComplete = false)
     )
-
     val state: LiveData<UiModel> = _state
+
+    private val _availableInvestments = MutableLiveData<List<AvailableInvestment>>()
+    val availableInvestments: LiveData<List<AvailableInvestment>> = _availableInvestments
 
     private fun updateUi(f: UiModel.() -> UiModel) =_state.postValue(f(_state.value!!))
 
@@ -32,9 +34,7 @@ class AvailableInvestmentsViewModel @Inject constructor(
 
         try {
             val res = investmentsService.getAvailableInvestments(UserIdBody(userId = userPrefs.userId))
-            val investments = res.body()!!
-
-            updateUi { copy(loading = false, availableInvestments = investments) }
+            _availableInvestments.value = res.body()!!
 
         } catch (err: Throwable) {
             updateUi { copy(error = true) }
@@ -43,7 +43,7 @@ class AvailableInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun newInvestment(investmentId: Int, amount: Number) = viewModelScope.launch {
+    fun newInvestment(investmentId: Int, amount: Float) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
@@ -64,7 +64,6 @@ class AvailableInvestmentsViewModel @Inject constructor(
     data class UiModel(
         val loading: Boolean,
         val error: Boolean,
-        val availableInvestments: List<AvailableInvestment>,
         val transactionComplete: Boolean
     )
 }

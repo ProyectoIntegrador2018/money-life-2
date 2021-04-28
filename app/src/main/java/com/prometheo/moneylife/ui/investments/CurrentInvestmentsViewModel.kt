@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prometheo.moneylife.data.models.AvailableInvestment
 import com.prometheo.moneylife.data.models.InvestmentTransactionBody
 import com.prometheo.moneylife.data.models.UserIdBody
 import com.prometheo.moneylife.data.models.UserInvestment
@@ -20,10 +21,12 @@ class CurrentInvestmentsViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = MutableLiveData<UiModel>(
-        UiModel(loading = false, error = false, currentInvestments = listOf())
+        UiModel(loading = false, error = false)
     )
-
     val state: LiveData<UiModel> = _state
+
+    private val _currentInvestments = MutableLiveData<List<UserInvestment>>()
+    val currentInvestments: LiveData<List<UserInvestment>> = _currentInvestments
 
     private fun updateUi(f: UiModel.() -> UiModel) =_state.postValue(f(_state.value!!))
 
@@ -32,9 +35,7 @@ class CurrentInvestmentsViewModel @Inject constructor(
 
         try {
             val res = investmentsService.getCurrentInvestments(UserIdBody(userId = userPrefs.userId))
-            val investments = res.body()!!
-
-            updateUi { copy(loading = false, currentInvestments = investments) }
+            _currentInvestments.value = res.body()!!
 
         } catch (err: Throwable) {
             updateUi { copy(error = true) }
@@ -43,7 +44,7 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun invest(investmentId: Int, amount: Number) = viewModelScope.launch {
+    fun invest(investmentId: Int, amount: Float) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
@@ -59,7 +60,7 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun withdraw(investmentId: Int, amount: Number) = viewModelScope.launch {
+    fun withdraw(investmentId: Int, amount: Float) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
@@ -77,7 +78,6 @@ class CurrentInvestmentsViewModel @Inject constructor(
 
     data class UiModel(
         val loading: Boolean,
-        val error: Boolean,
-        val currentInvestments: List<UserInvestment>
+        val error: Boolean
     )
 }

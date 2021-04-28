@@ -8,10 +8,10 @@ import retrofit2.http.PUT
 
 
 interface InvestmentsService {
-    @POST("/inversion/inversionesActuales/")
+    @POST("/inversion/catalogoDisponibles/")
     suspend fun getAvailableInvestments(@Body userIdBody: UserIdBody): Response<List<AvailableInvestment>>
 
-    @POST("inversion/nueva/")
+    @POST("/inversion/nueva/")
     suspend fun newInvestment(@Body body: InvestmentTransactionBody): Response<Message>
 
     @POST("/inversion/inversionesActuales/")

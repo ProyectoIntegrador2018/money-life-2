@@ -11,7 +11,7 @@ import com.prometheo.moneylife.databinding.DialogNewInvestmentBinding
 
 class NewInvestmentDialogFragment(
     private val name: String,
-    private val onConfirmListener: (amount: Number) -> Unit
+    private val onConfirmListener: (amount: Float) -> Unit
 ) : DialogFragment() {
 
     private var _binding: DialogNewInvestmentBinding? = null
@@ -21,7 +21,7 @@ class NewInvestmentDialogFragment(
         _binding = DialogNewInvestmentBinding.inflate(LayoutInflater.from(context)).apply {
             investmentName.text = name
             investButton.setOnClickListener {
-                val amount: Number = amountField.text.toString().toFloat()
+                val amount: Float = amountField.text.toString().toFloat()
                 onConfirmListener(amount)
             }
             cancelButton.setOnClickListener { dismiss() }
