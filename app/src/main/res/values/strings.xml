@@ -23,7 +23,14 @@
     <string name="signup_button">Crear Cuenta</string>
     <string name="go_to_login_button">Ya tienes una cuenta? Inicia sesión</string>
     <string name="go_to_signup_button">No tienes una cuenta? Crear cuenta</string>
+    <string name="amount_placeholder">Monto</string>
+    <string name="invest_button">INVERTIR</string>
+    <string name="withdraw_button">RETIRAR</string>
+    <string name="withdraw_all_button">RETIRAR TODO</string>
     <string name="title_health">Salud</string>
+    <string name="fab_new_investment_text">NUEVA INVERSION</string>
+    <string name="title_investments">Inversiones</string>
+    <string name="cancel_button">cancelar</string>
     <string name="title_news">Noticias</string>
     <string name="news">Noticia</string>
 </resources>

@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.prometheo.moneylife.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_investments"
+        android:name="com.prometheo.moneylife.ui.investments.CurrentInvestmentsFragment"
+        android:label="@string/title_investments"
+        tools:layout="@layout/fragment_current_investments" />
 
     <fragment
         android:id="@+id/navigation_notifications"

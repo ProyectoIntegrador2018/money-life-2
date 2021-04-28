@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.data.models.TurnAction
 import com.prometheo.moneylife.data.models.TurnActionCategory
