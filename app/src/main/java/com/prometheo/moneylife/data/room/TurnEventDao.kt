@@ -9,9 +9,13 @@ import com.prometheo.moneylife.data.models.TurnEvent
 
 @Dao
 interface TurnEventDao {
-    @Query("SELECT * FROM turnEvent ORDER BY eventId")
+    @Query("SELECT * FROM turnEvent ORDER BY turnNumber DESC")
     fun observeAll(): LiveData<List<TurnEvent>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg turnEvent: TurnEvent)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @JvmSuppressWildcards
+    fun insertAll(turnEvents: List<TurnEvent>)
 }
