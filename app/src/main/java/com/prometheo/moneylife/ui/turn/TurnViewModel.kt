@@ -112,10 +112,10 @@ class TurnViewModel  @Inject constructor(
             try {
                 val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
                 if ( response.isSuccessful ) {
-                    withContext (Dispatchers.IO) {
-                        turnEventDao.insert( response.body()?.first()!! )
-
-
+                    for (news in response.body()!!) {
+                        withContext (Dispatchers.IO) {
+                            turnEventDao.insert( news )
+                        }
                     }
                 }
             } catch ( err: Throwable ) {
