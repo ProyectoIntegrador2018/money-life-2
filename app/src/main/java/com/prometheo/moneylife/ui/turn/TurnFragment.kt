@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.data.models.Turn
 import com.prometheo.moneylife.data.models.TurnAction

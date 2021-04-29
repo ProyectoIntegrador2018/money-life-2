@@ -42,7 +42,6 @@ class NewsFragment : Fragment() {
             })
         })
 
-
         LoadingLiveData.get().loading.observe ( viewLifecycleOwner, Observer { loading ->
             binding.newsContent.isVisible = !loading
             binding.rvNews.isVisible = !loading
