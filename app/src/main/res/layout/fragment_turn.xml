@@ -322,7 +322,6 @@
                     <ImageView
                         android:id="@+id/ivGoods"
                         style="@style/TurnActionCardImage"
-                        android:scaleType="fitCenter"
                         android:src="@drawable/personal_property_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvGoods"
                         tools:ignore="MissingConstraints"

@@ -16,7 +16,6 @@ import com.prometheo.moneylife.data.models.TurnActionCategory
 import com.prometheo.moneylife.databinding.FragmentTurnBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class TurnFragment : Fragment() {
 
