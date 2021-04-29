@@ -14,46 +14,57 @@ class OwnedInvestmentItem(
     private val initialBalance: Float,
     private val initialContribution: Float,
     private val onEditListener: () -> Unit = {},
-    private val onInvestListener: (amount: Float) -> Unit = {},
-    private val onWithdrawListener: (amount: Float) -> Unit = {},
+    private val onEditCanceledListener: () -> Unit = {},
+    private val onInvestListener: (amount: Int) -> Unit = {},
+    private val onWithdrawListener: (amount: Int) -> Unit = {},
 ) : BindableItem<ItemOwnedInvestmentBinding>() {
     private lateinit var _viewBinding: ItemOwnedInvestmentBinding
+    private var editable = false
 
     override fun bind(viewBinding: ItemOwnedInvestmentBinding, position: Int) {
         _viewBinding = viewBinding
 
         viewBinding.investmentName.text = investmentName
         viewBinding.category.text = category
-        viewBinding.currentBalance.text = currentBalance.toString()
-        viewBinding.initialBalance.text = initialBalance.toString()
-        viewBinding.initialContribution.text = initialContribution.toString()
+        viewBinding.currentBalance.text = viewBinding.root.context.getString(
+            R.string.tv_money, currentBalance)
+        viewBinding.initialBalance.text = viewBinding.root.context.getString(
+            R.string.tv_money, initialBalance)
+        viewBinding.initialContribution.text = viewBinding.root.context.getString(
+            R.string.tv_money, initialContribution)
 
-        viewBinding.editButton.setOnClickListener {
-            onEditListener()
-            toggleEditMode()
-        }
+        _viewBinding.investButton.isVisible = false
+        _viewBinding.withdrawButton.isVisible = false
+        _viewBinding.withdrawAllButton.isVisible = false
+        _viewBinding.amountFieldHint.isVisible = false
 
+        viewBinding.editButton.setOnClickListener { toggleEditMode() }
         viewBinding.investButton.setOnClickListener {
-            val amount: Float = viewBinding.amountField.text.toString().toFloat()
+            val amount = viewBinding.amountField.text.toString().toInt()
             onInvestListener(amount)
         }
-
         viewBinding.withdrawButton.setOnClickListener {
-            val amount: Float = viewBinding.amountField.text.toString().toFloat()
+            val amount = viewBinding.amountField.text.toString().toInt()
             onWithdrawListener(amount)
         }
-
         viewBinding.withdrawAllButton.setOnClickListener {
-            onWithdrawListener(currentBalance)
+            onWithdrawListener(0)
         }
     }
 
     fun toggleEditMode() {
-        _viewBinding.editButton.isVisible = !_viewBinding.editButton.isVisible
-        _viewBinding.investButton.isVisible = !_viewBinding.investButton.isVisible
-        _viewBinding.withdrawButton.isVisible = !_viewBinding.withdrawButton.isVisible
-        _viewBinding.withdrawAllButton.isVisible = !_viewBinding.withdrawAllButton.isVisible
-        _viewBinding.amountFieldHint.isVisible = !_viewBinding.amountFieldHint.isVisible
+        editable = !editable
+
+        _viewBinding.investButton.isVisible = editable
+        _viewBinding.withdrawButton.isVisible = editable
+        _viewBinding.withdrawAllButton.isVisible = editable
+        _viewBinding.amountFieldHint.isVisible = editable
+
+        if (editable) {
+            onEditListener()
+        } else {
+            onEditCanceledListener()
+        }
     }
 
     override fun getLayout(): Int {

@@ -44,15 +44,18 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun invest(investmentId: Int, amount: Float) = viewModelScope.launch {
+    fun invest(investmentId: Int, amount: Int) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
-            val res = investmentsService.invest(InvestmentTransactionBody(
+            investmentsService.invest(InvestmentTransactionBody(
                 investmentId = investmentId,
                 userId = userPrefs.userId,
                 amount = amount,
             ))
+
+            loadData()
+
         } catch (err: Throwable) {
             updateUi { copy(error = true) }
         }
@@ -60,15 +63,17 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun withdraw(investmentId: Int, amount: Float) = viewModelScope.launch {
+    fun withdraw(investmentId: Int, amount: Int) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
-            val res = investmentsService.withdraw(InvestmentTransactionBody(
+            investmentsService.withdraw(InvestmentTransactionBody(
                 investmentId = investmentId,
                 userId = userPrefs.userId,
                 amount = amount,
             ))
+
+            loadData()
         } catch (err: Throwable) {
             updateUi { copy(error = true) }
         }

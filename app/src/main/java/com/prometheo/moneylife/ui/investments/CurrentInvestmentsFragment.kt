@@ -48,11 +48,11 @@ class CurrentInvestmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.state.observe(viewLifecycleOwner, { state ->
+        vm.state.observe(viewLifecycleOwner, Observer { state ->
             binding.loadingIndicator.isVisible = state.loading
         })
 
-        vm.currentInvestments.observe(viewLifecycleOwner, { currentInvestments ->
+        vm.currentInvestments.observe(viewLifecycleOwner, Observer { currentInvestments ->
             binding.emptyMessage.isVisible = currentInvestments.isEmpty()
             adapter.update(currentInvestments.mapIndexed { position, investment ->
 
@@ -64,6 +64,7 @@ class CurrentInvestmentsFragment : Fragment() {
                     initialBalance = investment.initialBalance,
                     initialContribution = investment.initialContribution,
                     onEditListener = { toggleEditMode(position) },
+                    onEditCanceledListener = {currentEditingInvestmentPosition = null },
                     onInvestListener = { amount -> vm.invest(investmentId = investment.id, amount = amount) },
                     onWithdrawListener = { amount -> vm.withdraw(investmentId = investment.id, amount = amount) },
                 )

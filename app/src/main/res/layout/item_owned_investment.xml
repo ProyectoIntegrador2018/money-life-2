@@ -9,11 +9,11 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
         android:background="#FFF"
         android:elevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="4dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,35 +47,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="#2D722D"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/investmentName"
-                tools:text="$3000.00"
-
-                tools:textColor="#2D722D" />
+                tools:text="$3000.00" />
 
             <TextView
                 android:id="@+id/range"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:text="Saldo inicial:"
                 android:textColor="@color/gray_darker"
-
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/current_balance"
-                tools:text="Saldo inicial:" />
+                app:layout_constraintTop_toBottomOf="@id/current_balance" />
 
             <TextView
                 android:id="@+id/initialContributionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="Inicial + aportación:"
                 android:textColor="@color/gray_darker"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/range"
-                tools:text="Inicial + aportación:" />
+                app:layout_constraintTop_toBottomOf="@id/range" />
 
             <TextView
                 android:id="@+id/initialBalance"
@@ -105,14 +103,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="96dp"
                 android:background="@drawable/pill_bg"
+                android:backgroundTint="#20EE0000"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="4dp"
+                android:textColor="#EE0000"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="#20EE0000"
-                tools:text="Tecnología"
-                android:textColor="#EE0000" />
+                tools:text="Tecnología" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/amountFieldHint"
