@@ -12,4 +12,3 @@ data class UserInvestment(
     @field:Json(name = "Aportacion") val initialContribution: Float,
     @field:Json(name = "SaldoActual") val currentBalance: Float
 )
-

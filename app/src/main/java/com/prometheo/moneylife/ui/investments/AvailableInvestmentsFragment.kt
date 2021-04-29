@@ -49,7 +49,7 @@ class AvailableInvestmentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         vm.loadData()
 
-        vm.state.observe(viewLifecycleOwner, { state ->
+        vm.state.observe(viewLifecycleOwner, Observer { state ->
             binding.loadingIndicator.isVisible = state.loading
             if (state.transactionComplete) {
                 parentFragmentManager.popBackStack()
@@ -59,7 +59,7 @@ class AvailableInvestmentsFragment : Fragment() {
             }
         })
 
-        vm.availableInvestments.observe(viewLifecycleOwner, { availableInvestments ->
+        vm.availableInvestments.observe(viewLifecycleOwner, Observer { availableInvestments ->
             binding.emptyMessage.isVisible = availableInvestments.isEmpty()
             adapter.update(availableInvestments.map { investment ->
 
@@ -76,9 +76,9 @@ class AvailableInvestmentsFragment : Fragment() {
     }
 
     private fun showInvestmentDialog(investmentId: Int, investmentName: String) {
-        NewInvestmentDialogFragment(
+         NewInvestmentDialogFragment(
             name = investmentName,
-            onConfirmListener = {amount ->
+            onConfirmListener = { amount ->
                 vm.newInvestment(investmentId, amount)
             }
         ).show(parentFragmentManager, null)

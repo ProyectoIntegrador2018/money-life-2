@@ -43,21 +43,19 @@ class AvailableInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun newInvestment(investmentId: Int, amount: Float) = viewModelScope.launch {
+    fun newInvestment(investmentId: Int, amount: Int) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
-            val res = investmentsService.newInvestment(
+            investmentsService.newInvestment(
                 InvestmentTransactionBody(userId = userPrefs.userId, investmentId = investmentId, amount = amount)
             )
 
             updateUi { copy(loading = false, transactionComplete = true) }
 
         } catch (err: Throwable) {
-            updateUi { copy(error = true) }
+            updateUi { copy(error = true, loading = false) }
         }
-
-        updateUi { copy(loading = false) }
     }
 
 
