@@ -151,11 +151,10 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/ivHappiness"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/invest_icon"
                         tools:src="@tools:sample/avatars" />
 
                 </LinearLayout>
