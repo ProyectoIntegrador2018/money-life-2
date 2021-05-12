@@ -148,12 +148,11 @@ class TurnFragment : Fragment() {
         val finalResultInt = finalResult.toInt()
 
         when (finalResultInt) {
-            in 1..20 -> binding.ivHappiness.setImageResource(R.drawable.fun_icon)
-            in 21..40 -> binding.ivHappiness.setImageResource(R.drawable.health_card_icon)
-            in 41..60 -> binding.ivHappiness.setImageResource(R.drawable.laboral_icon)
-            in 61..80 -> binding.ivHappiness.setImageResource(R.drawable.invest_icon)
-            in 81..100 -> binding.ivHappiness.setImageResource(R.drawable.personal_property_icon)
+            in 1..20 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_1)
+            in 21..40 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_2)
+            in 41..60 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_3)
+            in 61..80 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_4)
+            in 81..100 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_5)
         }
-
     }
 }
