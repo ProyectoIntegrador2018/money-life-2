@@ -119,24 +119,23 @@ class TurnFragment : Fragment() {
     }
 
     private fun calculateHappiness(turnData: Turn) {
-
         //Declare auxiliar variables
-        var cashFlow = turnData.income - turnData.expenses
-        var xFactor = 1 - (1/100)
-        var yFactor = 1 / 100
+        val cashFlow = turnData.income - turnData.expenses
+        val xFactor = 1 - (1/100)
+        val yFactor = 1 / 100
 
         //First Step "Data normalization"
-        var cashFlowX = cashFlow * xFactor
-        var savingY = turnData.balance * yFactor
-        var goalSaving = 6 * turnData.expenses //the goalSaving is 6 times your expenses per month
+        val cashFlowX = cashFlow * xFactor
+        val savingY = turnData.balance * yFactor
+        val goalSaving = 6 * turnData.expenses //the goalSaving is 6 times your expenses per month
 
         //Second step "Convert last result in base 100"
-        var averageFlow = (cashFlowX + savingY) / 2
+        val averageFlow = (cashFlowX + savingY) / 2
 
-        var financialHealth =  averageFlow * 100 / goalSaving
+        val financialHealth =  averageFlow * 100 / goalSaving
 
         //Third step "Final Average between happiness and financialHealth"
-        var finalResult = (financialHealth + turnData.happiness) / 2
+        val finalResult = (financialHealth + turnData.happiness) / 2
 
         //Set results in UI
         binding.tvHappinessAmount.text = getString(R.string.tv_happiness_amount, finalResult)
@@ -144,10 +143,7 @@ class TurnFragment : Fragment() {
     }
 
     private fun setHappinessImage(finalResult: Float) {
-
-        val finalResultInt = finalResult.toInt()
-
-        when (finalResultInt) {
+        when (finalResult.toInt()) {
             in 1..20 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_1)
             in 21..40 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_2)
             in 41..60 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_3)
