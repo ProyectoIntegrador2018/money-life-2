@@ -78,8 +78,8 @@
                     <TextView
                         android:id="@+id/tvBalance"
                         style="@style/TurnSubtitle"
-                        android:text="@string/tv_balance_title"
-                        android:layout_marginTop="16dp"/>
+                        android:layout_marginTop="16dp"
+                        android:text="@string/tv_balance_title" />
 
                     <TextView
                         android:id="@+id/tvBalanceAmount"
@@ -90,8 +90,8 @@
                     <TextView
                         android:id="@+id/tvExpenses"
                         style="@style/TurnSubtitle"
-                        android:text="@string/tv_expenses_title"
-                        android:layout_marginTop="16dp"/>
+                        android:layout_marginTop="16dp"
+                        android:text="@string/tv_expenses_title" />
 
                     <TextView
                         android:id="@+id/tvExpensesAmount"
@@ -103,15 +103,74 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvHappiness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvIncomeExpenses">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHappiness"
+                            style="@style/TurnSubtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/card_happiness_title" />
+
+                        <TextView
+                            android:id="@+id/tvHappinessAmount"
+                            style="@style/TurnMoney"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            tools:text="87 %" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivHappiness"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        tools:src="@tools:sample/avatars" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInvest"
                 style="@style/TurnActionCard"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
                 app:layout_constraintEnd_toStartOf="@+id/cvFun"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvIncomeExpenses">
+                app:layout_constraintTop_toBottomOf="@+id/cvHappiness">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -121,11 +180,13 @@
                     <ImageView
                         android:id="@+id/ivInvest"
                         style="@style/TurnActionCardImage"
-                        android:src="@drawable/invest_icon"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/invest_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvInvest"
-                        tools:src="@tools:sample/avatars"
-                        tools:ignore="MissingConstraints" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints"
+                        tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/ivInvestBlock"
@@ -152,11 +213,11 @@
                 android:id="@+id/cvFun"
                 style="@style/TurnActionCard"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cvInvest"
-                app:layout_constraintTop_toBottomOf="@+id/cvIncomeExpenses">
+                app:layout_constraintTop_toBottomOf="@+id/cvHappiness">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -166,11 +227,11 @@
                     <ImageView
                         android:id="@+id/ivFun"
                         style="@style/TurnActionCardImage"
-                        android:src="@drawable/fun_icon"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/fun_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvFun"
-                        tools:src="@tools:sample/avatars"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/ivFunBlock"
@@ -199,6 +260,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@+id/cvGoods"
@@ -212,11 +275,11 @@
                     <ImageView
                         android:id="@+id/ivWork"
                         style="@style/TurnActionCardImage"
-                        android:src="@drawable/laboral_icon"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/laboral_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvWork"
-                        tools:src="@tools:sample/avatars"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/ivWorkBlock"
@@ -245,6 +308,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cvWork"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cvInvest">
@@ -257,11 +322,11 @@
                     <ImageView
                         android:id="@+id/ivGoods"
                         style="@style/TurnActionCardImage"
-                        android:src="@drawable/personal_property_icon"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/personal_property_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvGoods"
-                        tools:src="@tools:sample/avatars"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/ivGoodsBlock"

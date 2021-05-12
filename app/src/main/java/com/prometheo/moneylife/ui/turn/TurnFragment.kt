@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.prometheo.moneylife.R
+import com.prometheo.moneylife.data.models.Turn
 import com.prometheo.moneylife.data.models.TurnAction
 import com.prometheo.moneylife.data.models.TurnActionCategory
 import com.prometheo.moneylife.databinding.FragmentTurnBinding
@@ -49,6 +50,7 @@ class TurnFragment : Fragment() {
             binding.tvIncomeAmount.text = getString(R.string.tv_money, turnData.income)
             binding.tvBalanceAmount.text = getString(R.string.tv_money, turnData.balance)
             binding.tvExpensesAmount.text = getString(R.string.tv_money, turnData.expenses)
+            calculateHappiness(turnData)
         })
         vm.turnActions.observe(viewLifecycleOwner, { actions ->
             investActions = actions.filter { it.category == TurnActionCategory.INVESTMENT }
@@ -114,5 +116,39 @@ class TurnFragment : Fragment() {
 
         binding.cvWork.isClickable = true
         binding.ivWorkBlock.isVisible = false
+    }
+
+    private fun calculateHappiness(turnData: Turn) {
+        //Declare auxiliar variables
+        val cashFlow = turnData.income - turnData.expenses
+        val xFactor = 1 - (1/100)
+        val yFactor = 1 / 100
+
+        //First Step "Data normalization"
+        val cashFlowX = cashFlow * xFactor
+        val savingY = turnData.balance * yFactor
+        val goalSaving = 6 * turnData.expenses //the goalSaving is 6 times your expenses per month
+
+        //Second step "Convert last result in base 100"
+        val averageFlow = (cashFlowX + savingY) / 2
+
+        val financialHealth =  averageFlow * 100 / goalSaving
+
+        //Third step "Final Average between happiness and financialHealth"
+        val finalResult = (financialHealth + turnData.happiness) / 2
+
+        //Set results in UI
+        binding.tvHappinessAmount.text = getString(R.string.tv_happiness_amount, finalResult)
+        setHappinessImage(finalResult)
+    }
+
+    private fun setHappinessImage(finalResult: Float) {
+        when (finalResult.toInt()) {
+            in 1..20 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_1)
+            in 21..40 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_2)
+            in 41..60 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_3)
+            in 61..80 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_4)
+            in 81..100 -> binding.ivHappiness.setImageResource(R.drawable.happiness_face_5)
+        }
     }
 }
