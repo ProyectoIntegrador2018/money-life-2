@@ -36,4 +36,5 @@
     <string name="cancel_button">cancelar</string>
     <string name="title_news">Noticias</string>
     <string name="news">Noticia</string>
+    <string name="min_stock_error_message">Debes comprar un mínimo de 100 acciones</string>
 </resources>

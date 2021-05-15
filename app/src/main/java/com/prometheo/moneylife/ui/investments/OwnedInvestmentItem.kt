@@ -17,6 +17,7 @@ class OwnedInvestmentItem(
     private val onEditCanceledListener: () -> Unit = {},
     private val onInvestListener: (amount: Int) -> Unit = {},
     private val onWithdrawListener: (amount: Int) -> Unit = {},
+    private val onSellListener: () -> Unit = {}
 ) : BindableItem<ItemOwnedInvestmentBinding>() {
     private lateinit var _viewBinding: ItemOwnedInvestmentBinding
     private var editable = false
@@ -45,10 +46,15 @@ class OwnedInvestmentItem(
         }
         viewBinding.withdrawButton.setOnClickListener {
             val amount = viewBinding.amountField.text.toString().toInt()
+
+            if (amount > currentBalance) {
+                viewBinding.amountFieldHint.error = "No puedes retirar del saldo actual"
+            }
+
             onWithdrawListener(amount)
         }
         viewBinding.withdrawAllButton.setOnClickListener {
-            onWithdrawListener(0)
+            onSellListener()
         }
     }
 
