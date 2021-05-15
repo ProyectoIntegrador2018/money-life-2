@@ -43,7 +43,6 @@ class NewsFragment : Fragment() {
         })
 
         LoadingLiveData.get().loading.observe ( viewLifecycleOwner, Observer { loading ->
-            binding.newsContent.isVisible = !loading
             binding.rvNews.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
             binding.shimmerViewContainer.isVisible = loading
