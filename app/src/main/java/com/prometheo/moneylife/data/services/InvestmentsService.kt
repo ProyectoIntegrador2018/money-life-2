@@ -22,4 +22,7 @@ interface InvestmentsService {
 
     @PUT("/inversion/retirarDinero/")
     suspend fun withdraw(@Body body: InvestmentTransactionBody): Response<Message>
+
+    @PUT("/inversion/retirarAccion/")
+    suspend fun sell(@Body body: SellInvestmentBody): Response<Unit>
 }

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prometheo.moneylife.data.models.AvailableInvestment
 import com.prometheo.moneylife.data.models.InvestmentTransactionBody
+import com.prometheo.moneylife.data.models.SellInvestmentBody
 import com.prometheo.moneylife.data.models.UserIdBody
 import com.prometheo.moneylife.data.models.UserInvestment
 import com.prometheo.moneylife.data.preferences.Prefs
@@ -28,13 +28,14 @@ class CurrentInvestmentsViewModel @Inject constructor(
     private val _currentInvestments = MutableLiveData<List<UserInvestment>>()
     val currentInvestments: LiveData<List<UserInvestment>> = _currentInvestments
 
-    private fun updateUi(f: UiModel.() -> UiModel) =_state.postValue(f(_state.value!!))
+    private fun updateUi(f: UiModel.() -> UiModel) = _state.postValue(f(_state.value!!))
 
     fun loadData() = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
-            val res = investmentsService.getCurrentInvestments(UserIdBody(userId = userPrefs.userId))
+            val res =
+                investmentsService.getCurrentInvestments(UserIdBody(userId = userPrefs.userId))
             _currentInvestments.value = res.body()!!
 
         } catch (err: Throwable) {
@@ -48,11 +49,13 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = true) }
 
         try {
-            investmentsService.invest(InvestmentTransactionBody(
-                investmentId = investmentId,
-                userId = userPrefs.userId,
-                amount = amount,
-            ))
+            investmentsService.invest(
+                InvestmentTransactionBody(
+                    investmentId = investmentId,
+                    userId = userPrefs.userId,
+                    amount = amount,
+                )
+            )
 
             loadData()
 
@@ -67,11 +70,32 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = true) }
 
         try {
-            investmentsService.withdraw(InvestmentTransactionBody(
-                investmentId = investmentId,
-                userId = userPrefs.userId,
-                amount = amount,
-            ))
+            investmentsService.withdraw(
+                InvestmentTransactionBody(
+                    investmentId = investmentId,
+                    userId = userPrefs.userId,
+                    amount = amount,
+                )
+            )
+
+            loadData()
+        } catch (err: Throwable) {
+            updateUi { copy(error = true) }
+        }
+
+        updateUi { copy(loading = false) }
+    }
+
+    fun sell(investmentId: Int) = viewModelScope.launch {
+        updateUi { copy(loading = true) }
+
+        try {
+            investmentsService.sell(
+                SellInvestmentBody(
+                    investmentId = investmentId,
+                    userId = userPrefs.userId,
+                )
+            )
 
             loadData()
         } catch (err: Throwable) {

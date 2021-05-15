@@ -28,8 +28,6 @@ class AvailableInvestmentsFragment : Fragment() {
     private var _binding: FragmentCurrentInvestmentsBinding? = null
     private val binding get() = _binding!!
 
-    private var currentEditingInvestmentPosition: Int? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
