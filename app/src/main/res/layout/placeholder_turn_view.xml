@@ -14,9 +14,9 @@
             android:textColor="@color/black"
             android:textSize="26sp"
             android:textStyle="bold"
+            android:text="Semana"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Semana 0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDummyIncomeExpenses"
@@ -152,7 +152,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
-                tools:src="@tools:sample/avatars" />
+                android:src="@drawable/happiness_face_3" />
 
         </LinearLayout>
 
@@ -183,7 +183,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/invest_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/fun_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -260,7 +260,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/laboral_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -298,7 +298,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/personal_property_icon" />
 
                 <TextView
                     android:layout_width="match_parent"

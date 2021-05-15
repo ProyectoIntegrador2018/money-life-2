@@ -1,10 +1,9 @@
-package com.prometheo.moneylife.ui.investments
+package com.prometheo.moneylife.ui.investments.current
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prometheo.moneylife.data.models.AvailableInvestment
 import com.prometheo.moneylife.data.models.InvestmentTransactionBody
 import com.prometheo.moneylife.data.models.UserIdBody
 import com.prometheo.moneylife.data.models.UserInvestment

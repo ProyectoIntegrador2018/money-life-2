@@ -155,7 +155,7 @@
                         android:layout_height="100dp"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        tools:src="@tools:sample/avatars" />
+                        android:src="@drawable/happiness_face_3" />
 
                 </LinearLayout>
 
@@ -185,8 +185,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/tvInvest"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:ignore="MissingConstraints"
-                        tools:src="@tools:sample/avatars" />
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/ivInvestBlock"
@@ -230,8 +229,7 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/fun_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvFun"
-                        tools:ignore="MissingConstraints"
-                        tools:src="@tools:sample/avatars" />
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/ivFunBlock"
@@ -278,8 +276,7 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/laboral_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvWork"
-                        tools:ignore="MissingConstraints"
-                        tools:src="@tools:sample/avatars" />
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/ivWorkBlock"
@@ -325,8 +322,7 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/personal_property_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvGoods"
-                        tools:ignore="MissingConstraints"
-                        tools:src="@tools:sample/avatars" />
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/ivGoodsBlock"
