@@ -40,6 +40,7 @@ class NewsFragment : Fragment() {
             adapter.update (turnEvents.map { item ->
                 NewsGroupieItem ( item )
             })
+            binding.tvEmptyNews.isVisible = turnEvents.isEmpty()
         })
 
         LoadingLiveData.get().loading.observe ( viewLifecycleOwner, Observer { loading ->

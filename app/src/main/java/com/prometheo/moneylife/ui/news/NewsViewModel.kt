@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.prometheo.moneylife.data.models.Turn
 import com.prometheo.moneylife.data.models.TurnEvent
 import com.prometheo.moneylife.data.models.UserIdBody
 import com.prometheo.moneylife.data.preferences.Prefs
@@ -21,4 +22,7 @@ class NewsViewModel @Inject constructor (
     private val turnEventDao: TurnEventDao
 ) : ViewModel() {
     val turnEvents: LiveData<List<TurnEvent>> = turnEventDao.observeAll()
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 }

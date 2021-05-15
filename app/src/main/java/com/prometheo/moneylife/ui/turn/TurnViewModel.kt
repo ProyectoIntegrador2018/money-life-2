@@ -112,15 +112,9 @@ class TurnViewModel  @Inject constructor(
             try {
                 val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
                 if ( response.isSuccessful ) {
-                    /* val listNews = listOf<TurnEvent>(
-                        TurnEvent(5, 10, "Prueba 1", "Buenas", listOf( Influence("aja", "12", "Semanal", 5) )),
-                        TurnEvent(10, 15, "Prueba 2", "Buenas", listOf( Influence("aja", "12", "Semanal", 5) ))) */
-                    val newsList = response.body()
-                    for (news in newsList!!) {
-                        news.turnNumber = turnData.value?.turnNumber
-                    }
                     withContext (Dispatchers.IO) {
-                        turnEventDao.insertAll( newsList )
+                        response.body()?.first()!!.turnNumber = turnData.value?.turnNumber
+                        turnEventDao.insert( response.body()?.first()!! )
                     }
                 }
             } catch ( err: Throwable ) {
