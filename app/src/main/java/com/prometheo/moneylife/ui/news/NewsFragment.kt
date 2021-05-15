@@ -17,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
-
     private val adapter = GroupAdapter<GroupieViewHolder>()
     private lateinit var binding: FragmentNewsBinding
     private val vm: NewsViewModel by viewModels()
@@ -48,6 +47,7 @@ class NewsFragment : Fragment() {
             binding.rvNews.isVisible = !loading
             binding.loadingIndicator.isVisible = loading
             binding.shimmerViewContainer.isVisible = loading
+            binding.tvEmptyNews.isVisible = !loading
             if ( loading ) {
                 binding.shimmerViewContainer.startShimmer()
             } else {
