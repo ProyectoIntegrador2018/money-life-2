@@ -67,6 +67,7 @@ class CurrentInvestmentsFragment : Fragment() {
                     onEditCanceledListener = {currentEditingInvestmentPosition = null },
                     onInvestListener = { amount -> vm.invest(investmentId = investment.id, amount = amount) },
                     onWithdrawListener = { amount -> vm.withdraw(investmentId = investment.id, amount = amount) },
+                    onSellListener = { vm.sell(investmentId = investment.id) }
                 )
             })
         })
@@ -78,6 +79,10 @@ class CurrentInvestmentsFragment : Fragment() {
     }
 
     private fun toggleEditMode(position: Int) {
+        if (position == currentEditingInvestmentPosition) {
+            return
+        }
+
         currentEditingInvestmentPosition?.let { lastPosition ->
             (adapter.getItem(lastPosition) as OwnedInvestmentItem).toggleEditMode()
         }
