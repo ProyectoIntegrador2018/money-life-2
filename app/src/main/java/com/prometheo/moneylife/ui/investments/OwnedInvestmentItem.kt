@@ -1,6 +1,5 @@
-package com.prometheo.moneylife.ui.investments.current
+package com.prometheo.moneylife.ui.investments
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
 import androidx.core.view.isVisible

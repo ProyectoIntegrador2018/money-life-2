@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentInvestmentsBinding
+import com.prometheo.moneylife.ui.investments.OwnedInvestmentItem
 import com.prometheo.moneylife.ui.investments.available.AvailableInvestmentsFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
