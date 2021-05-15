@@ -10,11 +10,12 @@ import com.squareup.moshi.JsonClass
 @Entity(tableName = "turnEvent")
 @JsonClass(generateAdapter = true)
 data class TurnEvent(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "eventId") @field:Json(name = "Evento_id") var eventId: Int?,
+    @PrimaryKey(autoGenerate = true) var _id: Int?,
+    @Ignore @field:Json(name = "Evento_id") var eventId: Int?,
+    @ColumnInfo(name = "turnNumber") var turnNumber: Int?,
     @ColumnInfo(name = "description") @field:Json(name = "Descripcion") var description: String?,
-    @ColumnInfo(name = "type") @field:Json(name = "TipoEvento") var type: String?,
+    @Ignore @field:Json(name = "TipoEvento") var type: String?,
     @Ignore @field:Json(name = "Afecta") val influences: List<Influence>?
 ) {
-    constructor():this(eventId=null, description=null, type=null, influences=null)
+    constructor():this(_id=null, eventId=null, turnNumber=null, description=null, type=null, influences=null)
 }
