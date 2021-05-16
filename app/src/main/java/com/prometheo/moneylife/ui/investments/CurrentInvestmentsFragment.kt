@@ -102,6 +102,12 @@ class CurrentInvestmentsFragment : Fragment() {
                 //vm.payInvestment(loanId, amount)
             }
         ).show(parentFragmentManager, null)*/
+        val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
+        if (!queryResponse.isNullOrEmpty()) {
+            InvestmentBalanceGraphDialogFragment(queryResponse).show(parentFragmentManager, null)
+        } else {
+            println("No se encontraron datos")
+        }
     }
 
     private fun openNewInvestmentScreen() {
