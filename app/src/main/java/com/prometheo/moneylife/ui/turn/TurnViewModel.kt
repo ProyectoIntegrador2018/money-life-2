@@ -111,11 +111,12 @@ class TurnViewModel  @Inject constructor(
         viewModelScope.launch {
             try {
                 val response = turnService.getTurnEvents( UserIdBody( prefs.userId ) )
-                if ( response.isSuccessful ) {
+                if ( response.isSuccessful &&
+                    !response.body()?.first()!!.description.isNullOrEmpty() &&
+                    !response.body()?.first()!!.type.isNullOrEmpty() ) {
                     withContext (Dispatchers.IO) {
+                        response.body()?.first()!!.turnNumber = turnData.value?.turnNumber
                         turnEventDao.insert( response.body()?.first()!! )
-
-
                     }
                 }
             } catch ( err: Throwable ) {

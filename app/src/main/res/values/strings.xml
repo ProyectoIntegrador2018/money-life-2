@@ -37,6 +37,8 @@
     <string name="cancel_button">cancelar</string>
     <string name="title_news">Noticias</string>
     <string name="news">Noticia</string>
+    <string name="news_date">Turno %1$d</string>
+    <string name="empty_news">No hay noticias que mostrar</string>
     <string name="min_stock_error_message">Debes comprar un mínimo de 100 acciones</string>
     <string name="available_investments">Prestamos Disponibles</string>
     <string name="active_loands">Prestamos Activos</string>
