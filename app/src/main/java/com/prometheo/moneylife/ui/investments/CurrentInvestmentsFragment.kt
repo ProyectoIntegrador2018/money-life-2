@@ -67,7 +67,8 @@ class CurrentInvestmentsFragment : Fragment() {
                     onEditCanceledListener = {currentEditingInvestmentPosition = null },
                     onInvestListener = { amount -> vm.invest(investmentId = investment.id, amount = amount) },
                     onWithdrawListener = { amount -> vm.withdraw(investmentId = investment.id, amount = amount) },
-                    onSellListener = { vm.sell(investmentId = investment.id) }
+                    onSellListener = { vm.sell(investmentId = investment.id) },
+                    onShowGraphListener = { investmentId -> showInvestmentBalanceGraph(investmentId) }
                 )
             })
         })
@@ -88,6 +89,19 @@ class CurrentInvestmentsFragment : Fragment() {
         }
 
         currentEditingInvestmentPosition = position
+    }
+
+    fun showInvestmentBalanceGraph(investmentId: Int) {
+        /*var loanId = 0
+        var loanName = "hola"
+        var remainingBalance = 0.9
+        PayLoanDialogFragment(
+            name = loanName,
+            totalLeft = remainingBalance.toFloat(),
+            onConfirmListener = { amount ->
+                //vm.payInvestment(loanId, amount)
+            }
+        ).show(parentFragmentManager, null)*/
     }
 
     private fun openNewInvestmentScreen() {
