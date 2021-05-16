@@ -1,19 +1,16 @@
 package com.prometheo.moneylife.ui.loans
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.databinding.FragmentLoansBinding
-import com.prometheo.moneylife.ui.loans.items.AvailableLoanItem
-import com.prometheo.moneylife.ui.loans.items.AvailableLoansHeaderItem
-import com.prometheo.moneylife.ui.loans.items.OwnedLoanItem
-import com.prometheo.moneylife.ui.loans.items.OwnedLoansHeaderItem
+import com.prometheo.moneylife.ui.loans.items.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +27,6 @@ class LoansFragment : Fragment() {
     private val adapter = GroupAdapter<GroupieViewHolder>()
     private var _binding: FragmentLoansBinding? = null
     private val binding get() = _binding!!
-
-    private var currentEditingInvestmentPosition: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,29 +47,77 @@ class LoansFragment : Fragment() {
 
         vm.state.observe(viewLifecycleOwner, Observer { state ->
             binding.loadingIndicator.isVisible = state.loading
-
-
         })
 
         vm.loans.observe(viewLifecycleOwner, Observer { loans ->
             adapter.clear()
-            adapter.add(OwnedLoansHeaderItem())
-            adapter.addAll(loans.userLoans.map {
-                OwnedLoanItem(
-                    TODO()
-                )
-            })
-            adapter.add(AvailableLoansHeaderItem())
-            adapter.addAll(loans.availableLoans.map {
-                AvailableLoanItem(
-                    TODO()
-                )
-            })
+            if (loans.userLoans.isNotEmpty()) {
+                adapter.add(OwnedLoansHeaderItem())
+                adapter.addAll(loans.userLoans.map {
+                    OwnedLoanItem(
+                        loanType = it.type,
+                        balance = it.balance,
+                        monthlyPayment = it.monthlyPayment,
+                        remainingPayments = it.monthsRemaining,
+                        onPayListener = {
+                            showPayBalanceDialog(
+                                it.id,
+                                it.type,
+                                it.balance.toFloat()
+                            )
+                        }
+                    )
+                })
+            }
+            if (loans.userLoans.isNotEmpty() && loans.availableLoans.isNotEmpty()) {
+                adapter.add(SeparatorItem())
+            }
+            if (loans.availableLoans.isNotEmpty()) {
+                adapter.add(AvailableLoansHeaderItem())
+                adapter.addAll(loans.availableLoans.map {
+                    AvailableLoanItem(
+                        loanType = it.type,
+                        duration = it.duration,
+                        interestRate = it.interestRate,
+                        onApplyListener = { showApplyForInvestmentDialog(it.id, it.type) }
+                    )
+                })
+            }
         })
     }
 
     override fun onResume() {
         super.onResume()
         vm.loadData()
+    }
+
+    private fun showPayBalanceDialog(
+        loanId: Int,
+        loanName: String,
+        remainingBalance: Float
+    ) {
+        PayLoanDialogFragment(
+            name = loanName,
+            totalLeft = remainingBalance,
+            onConfirmListener = { amount ->
+                vm.payInvestment(loanId, amount)
+            }
+        ).show(parentFragmentManager, null)
+    }
+
+    private fun showApplyForInvestmentDialog(
+        loanId: Int,
+        loanName: String,
+    ) {
+        ApplyForInvestmentDialog(
+            name = loanName,
+            onConfirmListener = { deposit, totalValue ->
+                vm.applyForInvestment(
+                    loanId = loanId,
+                    totalValue = totalValue,
+                    deposit = deposit
+                )
+            }
+        ).show(parentFragmentManager, null)
     }
 }

@@ -33,9 +33,9 @@ class LoansViewModel @Inject constructor(
         updateUi { copy(loading = true) }
 
         try {
-            val userLoans =  loanService.getUserLoans(UserIdBody(userId = userPrefs.userId)).body()!!
+            val userLoans = loanService.getUserLoans(UserIdBody(userId = userPrefs.userId)).body()!!
             val availableLoans = loanService.getAvailableLoans().body()!!
-            _loans.value = Loans(userLoans = userLoans, availableLoans = availableLoans)
+            _loans.postValue(Loans(userLoans = userLoans, availableLoans = availableLoans))
 
         } catch (err: Throwable) {
             updateUi { copy(error = true) }
@@ -46,18 +46,18 @@ class LoansViewModel @Inject constructor(
 
     fun applyForInvestment(
         loanId: Int,
-        downPayment: Int,
-        totalLoan: Int
+        deposit: Int,
+        totalValue: Int
     ) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
             loanService.applyForLoan(
-                ApplyForLoanBody(
+                LoanApplicationBody(
                     userId = userPrefs.userId,
                     loanId = loanId,
-                    downPayment = downPayment,
-                    totalLoan = totalLoan
+                    deposit = deposit,
+                    totalValue = totalValue
                 )
             )
 
@@ -70,14 +70,16 @@ class LoansViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun payInvestment(investmentId: Int) = viewModelScope.launch {
+    fun payInvestment(loanId: Int, amortization: Int) = viewModelScope.launch {
         updateUi { copy(loading = true) }
 
         try {
             loanService.payLoan(
-              PayLoanBody(
-
-              )
+                LoanPayBody(
+                    userId = userPrefs.userId,
+                    loanId = loanId,
+                    amortization = amortization
+                )
             )
 
             loadData()

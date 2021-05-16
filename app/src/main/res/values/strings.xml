@@ -42,4 +42,11 @@
     <string name="min_stock_error_message">Debes comprar un mínimo de 100 acciones</string>
     <string name="available_investments">Prestamos Disponibles</string>
     <string name="active_loands">Prestamos Activos</string>
+    <string name="pay_button">PAGAR</string>
+    <string name="cant_pay_more_than_max">No puedes pagar mas del balance restante</string>
+    <string name="button_apply">APLICAR</string>
+    <string name="placeholder_deposit">Enganche</string>
+    <string name="interest_rate_label">Taza de interés:</string>
+    <string name="button_apply_for_loan">SOLICITAR</string>
+    <string name="duration_label">Duracion:</string>
 </resources>

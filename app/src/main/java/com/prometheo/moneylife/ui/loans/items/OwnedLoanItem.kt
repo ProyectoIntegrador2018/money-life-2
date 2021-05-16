@@ -6,18 +6,24 @@ import com.prometheo.moneylife.databinding.ItemOwnedLoanBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 class OwnedLoanItem(
-    loanType: String,
-    remainingPayments: Int,
-    balance: Float,
-    monthlyPayment: Float,
-    onPayListener: () -> Unit = {},
-): BindableItem<ItemOwnedLoanBinding>() {
-    override fun getLayout(): Int = R.layout.item_owned_loans_header
+    private val loanType: String,
+    private val remainingPayments: Int,
+    private val balance: String,
+    private val monthlyPayment: String,
+    private val onPayListener: () -> Unit = {},
+) : BindableItem<ItemOwnedLoanBinding>() {
+    override fun getLayout(): Int = R.layout.item_owned_loan
     override fun initializeViewBinding(view: View): ItemOwnedLoanBinding {
         return ItemOwnedLoanBinding.bind(view)
     }
 
-    override fun bind(viewBinding: ItemOwnedLoanBinding, position: Int) {}
+    override fun bind(viewBinding: ItemOwnedLoanBinding, position: Int) {
+        viewBinding.loanName.text = loanType
+        viewBinding.balance.text = "-$${balance}"
+        viewBinding.remainingPayments.text = "Meses restantes: $remainingPayments"
+        viewBinding.monthlyPayment.text = "Mensualidad: $$monthlyPayment"
+        viewBinding.root.setOnClickListener { onPayListener() }
+    }
 }
 
 
