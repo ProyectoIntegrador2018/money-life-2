@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        android:visibility="gone">
 
         <include layout="@layout/placeholder_turn_view" />
 
@@ -98,6 +98,7 @@
                         style="@style/TurnMoney"
                         android:text="@string/tv_expenses_title"
                         tools:text="$10,000" />
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -319,7 +320,6 @@
                     <ImageView
                         android:id="@+id/ivGoods"
                         style="@style/TurnActionCardImage"
-                        android:scaleType="fitCenter"
                         android:src="@drawable/personal_property_icon"
                         app:layout_constraintBottom_toTopOf="@+id/tvGoods"
                         tools:ignore="MissingConstraints" />

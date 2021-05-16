@@ -7,6 +7,7 @@ import com.prometheo.moneylife.data.models.UserBody
 import com.prometheo.moneylife.data.models.responses.LoginResponse
 import com.prometheo.moneylife.data.preferences.Prefs
 import com.prometheo.moneylife.data.services.UserService
+import com.prometheo.moneylife.ui.signup.SignupViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK

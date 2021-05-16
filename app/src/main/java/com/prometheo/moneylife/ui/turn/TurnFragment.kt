@@ -8,14 +8,12 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.data.models.Turn
 import com.prometheo.moneylife.data.models.TurnAction
 import com.prometheo.moneylife.data.models.TurnActionCategory
 import com.prometheo.moneylife.databinding.FragmentTurnBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class TurnFragment : Fragment() {
@@ -40,11 +38,13 @@ class TurnFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vm.getTurnData()
+
         binding.cvInvest.setOnClickListener { showDialog(investActions) }
         binding.cvFun.setOnClickListener { showDialog(funActions) }
         binding.cvGoods.setOnClickListener { showDialog(goodsActions) }
         binding.cvWork.setOnClickListener { showDialog(workActions) }
         binding.fabNextTurn.setOnClickListener { vm.nextTurn() }
+
         vm.turnData.observe(viewLifecycleOwner, { turnData ->
             binding.tvWeekNumber.text = getString(R.string.tv_week_number, turnData.turnNumber)
             binding.tvIncomeAmount.text = getString(R.string.tv_money, turnData.income)

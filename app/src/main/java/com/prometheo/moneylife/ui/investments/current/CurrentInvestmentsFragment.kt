@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentInvestmentsBinding
-import com.prometheo.moneylife.ui.investments.OwnedInvestmentItem
 import com.prometheo.moneylife.ui.investments.available.AvailableInvestmentsFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -71,6 +70,7 @@ class CurrentInvestmentsFragment : Fragment() {
                     onEditCanceledListener = {currentEditingInvestmentPosition = null },
                     onInvestListener = { amount -> vm.invest(investmentId = investment.id, amount = amount) },
                     onWithdrawListener = { amount -> vm.withdraw(investmentId = investment.id, amount = amount) },
+                    onSellListener = { vm.sell(investmentId = investment.id) }
                 )
             })
         })
@@ -82,6 +82,10 @@ class CurrentInvestmentsFragment : Fragment() {
     }
 
     private fun toggleEditMode(position: Int) {
+        if (position == currentEditingInvestmentPosition) {
+            return
+        }
+
         currentEditingInvestmentPosition?.let { lastPosition ->
             (adapter.getItem(lastPosition) as OwnedInvestmentItem).toggleEditMode()
         }

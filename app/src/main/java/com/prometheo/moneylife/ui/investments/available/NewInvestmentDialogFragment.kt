@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.DialogNewInvestmentBinding
 
 class NewInvestmentDialogFragment(
@@ -22,8 +23,13 @@ class NewInvestmentDialogFragment(
             investmentName.text = name
             investButton.setOnClickListener {
                 val amount = amountField.text.toString().toInt()
-                onConfirmListener(amount)
-                dismiss()
+
+                if (amount < 100) {
+                    amountFieldHint.error = getString(R.string.min_stock_error_message)
+                } else {
+                    onConfirmListener(amount)
+                    dismiss()
+                }
             }
             cancelButton.setOnClickListener { dismiss() }
         }
