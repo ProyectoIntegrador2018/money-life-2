@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_loans">Préstamos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_turn">Turno</string>
@@ -39,4 +40,13 @@
     <string name="news_date">Turno %1$d</string>
     <string name="empty_news">No hay noticias que mostrar</string>
     <string name="min_stock_error_message">Debes comprar un mínimo de 100 acciones</string>
+    <string name="available_investments">Prestamos Disponibles</string>
+    <string name="active_loands">Prestamos Activos</string>
+    <string name="pay_button">PAGAR</string>
+    <string name="cant_pay_more_than_max">No puedes pagar mas del balance restante</string>
+    <string name="button_apply">APLICAR</string>
+    <string name="placeholder_deposit">Enganche</string>
+    <string name="interest_rate_label">Taza de interés:</string>
+    <string name="button_apply_for_loan">SOLICITAR</string>
+    <string name="duration_label">Duracion:</string>
 </resources>
