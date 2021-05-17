@@ -32,7 +32,7 @@ class InvestmentBalanceGraphDialogFragment(
             graph.viewport.setMinY(0.0)
 
             //Set labels atribbutes
-            graph.title = investmentItemsBalance.first().name //TODO: Change harcoded string when Fragment Send Info
+            graph.title = investmentItemsBalance.first().name
             graph.gridLabelRenderer.verticalAxisTitle = "Precio"
             graph.gridLabelRenderer.horizontalAxisTitle = "Turno"
             graph.legendRenderer.isVisible = true
@@ -60,10 +60,9 @@ class InvestmentBalanceGraphDialogFragment(
 
     fun createPointSeries(): LineGraphSeries<DataPoint> {
 
-        var dataPointsArray = arrayOf<DataPoint>()
-        investmentItemsBalance.map {
-            dataPointsArray += DataPoint(it.turnNumber?.toDouble()!!,it.currentBalance.toDouble())
-        }
+        val dataPointsArray = investmentItemsBalance.map {
+            DataPoint(it.turnNumber?.toDouble()!!,it.currentBalance.toDouble())
+        }.toTypedArray()
         val investmentLineGrapSeries = LineGraphSeries(dataPointsArray)
         val series: LineGraphSeries<DataPoint> = investmentLineGrapSeries
 
