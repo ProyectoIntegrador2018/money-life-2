@@ -92,22 +92,13 @@ class CurrentInvestmentsFragment : Fragment() {
     }
 
     fun showInvestmentBalanceGraph(investmentId: Int) {
-        /*var loanId = 0
-        var loanName = "hola"
-        var remainingBalance = 0.9
-        PayLoanDialogFragment(
-            name = loanName,
-            totalLeft = remainingBalance.toFloat(),
-            onConfirmListener = { amount ->
-                //vm.payInvestment(loanId, amount)
-            }
-        ).show(parentFragmentManager, null)*/
-        val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
+        InvestmentBalanceGraphDialogFragment().show(parentFragmentManager, null)
+        /*val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
         if (!queryResponse.isNullOrEmpty()) {
             InvestmentBalanceGraphDialogFragment(queryResponse).show(parentFragmentManager, null)
         } else {
             println("No se encontraron datos")
-        }
+        }*/
     }
 
     private fun openNewInvestmentScreen() {
