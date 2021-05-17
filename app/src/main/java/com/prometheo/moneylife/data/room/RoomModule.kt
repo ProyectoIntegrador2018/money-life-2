@@ -26,4 +26,9 @@ object RoomModule {
     @Provides
     fun provideTurnEventDao (db: AppDatabase) =
         db.turnEventDao()
+
+    @Singleton
+    @Provides
+    fun provideInvestmentRecordDao (db: AppDatabase) =
+        db.investmentRecordDao()
 }

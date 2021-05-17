@@ -9,6 +9,7 @@ import com.prometheo.moneylife.data.models.SellInvestmentBody
 import com.prometheo.moneylife.data.models.UserIdBody
 import com.prometheo.moneylife.data.models.UserInvestment
 import com.prometheo.moneylife.data.preferences.Prefs
+import com.prometheo.moneylife.data.room.InvestmentRecordDao
 import com.prometheo.moneylife.data.services.InvestmentsService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class CurrentInvestmentsViewModel @Inject constructor(
     private val investmentsService: InvestmentsService,
     private val userPrefs: Prefs,
+    private val investmentRecordDao: InvestmentRecordDao
 ) : ViewModel() {
 
     private val _state = MutableLiveData<UiModel>(
@@ -27,6 +29,7 @@ class CurrentInvestmentsViewModel @Inject constructor(
 
     private val _currentInvestments = MutableLiveData<List<UserInvestment>>()
     val currentInvestments: LiveData<List<UserInvestment>> = _currentInvestments
+
 
     private fun updateUi(f: UiModel.() -> UiModel) = _state.postValue(f(_state.value!!))
 
@@ -103,6 +106,10 @@ class CurrentInvestmentsViewModel @Inject constructor(
         }
 
         updateUi { copy(loading = false) }
+    }
+
+    fun retrieveHistoricalInvestmentBalance(investmentId: Int) : List<UserInvestment> {
+        return investmentRecordDao.getById(investmentId)
     }
 
     data class UiModel(

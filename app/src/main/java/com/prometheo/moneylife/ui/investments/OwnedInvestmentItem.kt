@@ -17,7 +17,8 @@ class OwnedInvestmentItem(
     private val onEditCanceledListener: () -> Unit = {},
     private val onInvestListener: (amount: Int) -> Unit = {},
     private val onWithdrawListener: (amount: Int) -> Unit = {},
-    private val onSellListener: () -> Unit = {}
+    private val onSellListener: () -> Unit = {},
+    private val onShowGraphListener: (investmentId: Int) -> Unit = {}
 ) : BindableItem<ItemOwnedInvestmentBinding>() {
     private lateinit var _viewBinding: ItemOwnedInvestmentBinding
     private var editable = false
@@ -39,6 +40,7 @@ class OwnedInvestmentItem(
         _viewBinding.withdrawAllButton.isVisible = false
         _viewBinding.amountFieldHint.isVisible = false
 
+        viewBinding.investmentItemCard.setOnClickListener { onShowGraphListener(id) }
         viewBinding.editButton.setOnClickListener { toggleEditMode() }
         viewBinding.investButton.setOnClickListener {
             val amount = viewBinding.amountField.text.toString().toInt()
