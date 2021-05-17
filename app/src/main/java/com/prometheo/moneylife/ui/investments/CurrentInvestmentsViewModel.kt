@@ -30,6 +30,7 @@ class CurrentInvestmentsViewModel @Inject constructor(
     private val _currentInvestments = MutableLiveData<List<UserInvestment>>()
     val currentInvestments: LiveData<List<UserInvestment>> = _currentInvestments
 
+
     private fun updateUi(f: UiModel.() -> UiModel) = _state.postValue(f(_state.value!!))
 
     fun loadData() = viewModelScope.launch {
@@ -107,8 +108,8 @@ class CurrentInvestmentsViewModel @Inject constructor(
         updateUi { copy(loading = false) }
     }
 
-    fun retrieveHistoricalInvestmentBalance(investmentId: Int) : List<UserInvestment>? {
-        return investmentRecordDao.observeById(investmentId).value
+    fun retrieveHistoricalInvestmentBalance(investmentId: Int) : List<UserInvestment> {
+        return investmentRecordDao.getById(investmentId)
     }
 
     data class UiModel(

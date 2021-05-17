@@ -10,7 +10,7 @@ import com.prometheo.moneylife.data.models.UserInvestment
 @Dao
 interface InvestmentRecordDao {
     @Query("SELECT * FROM investmentRecord WHERE id = :investmentId  ORDER BY turnNumber ASC")
-    fun observeById(investmentId: Int): LiveData<List<UserInvestment>>
+    fun getById(investmentId: Int): List<UserInvestment>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     @JvmSuppressWildcards

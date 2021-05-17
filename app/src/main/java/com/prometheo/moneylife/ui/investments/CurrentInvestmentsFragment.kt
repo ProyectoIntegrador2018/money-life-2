@@ -9,12 +9,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentCurrentInvestmentsBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CurrentInvestmentsFragment : Fragment() {
@@ -92,13 +95,11 @@ class CurrentInvestmentsFragment : Fragment() {
     }
 
     fun showInvestmentBalanceGraph(investmentId: Int) {
-        InvestmentBalanceGraphDialogFragment().show(parentFragmentManager, null)
-        /*val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
-        if (!queryResponse.isNullOrEmpty()) {
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
             InvestmentBalanceGraphDialogFragment(queryResponse).show(parentFragmentManager, null)
-        } else {
-            println("No se encontraron datos")
-        }*/
+        }
     }
 
     private fun openNewInvestmentScreen() {
