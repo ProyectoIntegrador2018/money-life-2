@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.prometheo.moneylife.data.liveData.LoadingLiveData
 import com.prometheo.moneylife.data.models.*
 import com.prometheo.moneylife.data.preferences.Prefs
+import com.prometheo.moneylife.data.room.InvestmentRecordDao
 import com.prometheo.moneylife.data.room.TurnEventDao
+import com.prometheo.moneylife.data.services.InvestmentsService
 import com.prometheo.moneylife.data.services.TurnService
 import com.prometheo.moneylife.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +23,9 @@ import javax.inject.Inject
 class TurnViewModel  @Inject constructor(
     private val turnService: TurnService,
     private val prefs: Prefs,
-    private val turnEventDao: TurnEventDao
+    private val turnEventDao: TurnEventDao,
+    private val investmentsService: InvestmentsService,
+    private val investmentRecordDao: InvestmentRecordDao
 ) : ViewModel() {
 
     private val _turnData = MutableLiveData<Turn>()
@@ -67,6 +71,7 @@ class TurnViewModel  @Inject constructor(
                     getTurnActions()
                     _turnData.value = response.body()!![0]
                     updateTurnEvents()
+                    updateInvestmentsBalance()
                 }
             } catch (err: Throwable) {
                 message.value = err.message
@@ -104,7 +109,7 @@ class TurnViewModel  @Inject constructor(
         }
     }
 
-    private fun updateTurnEvents () {
+    private fun updateTurnEvents() {
         _loading.value = true
         LoadingLiveData.get().setLoading ( true )
 
@@ -123,6 +128,27 @@ class TurnViewModel  @Inject constructor(
                 message.value = "Error al cargar noticias"
             }
             LoadingLiveData.get().setLoading ( false )
+            _loading.value = false
+        }
+    }
+
+    private fun updateInvestmentsBalance() {
+        _loading.value = true
+
+        viewModelScope.launch {
+            try {
+                val response = investmentsService.getCurrentInvestments( UserIdBody( prefs.userId ) )
+                if ( response.isSuccessful && !response.body().isNullOrEmpty()) {
+                    withContext (Dispatchers.IO) {
+
+                        investmentRecordDao.insertAll(response.body()!!.map {
+                            it.copy(turnNumber = turnData.value!!.turnNumber)
+                        })
+                    }
+                }
+            } catch ( err: Throwable ) {
+                message.value = "Error al cargar inversiones"
+            }
             _loading.value = false
         }
     }

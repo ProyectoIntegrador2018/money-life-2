@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentInvestmentsBinding
@@ -16,6 +17,8 @@ import com.prometheo.moneylife.ui.investments.available.AvailableInvestmentsFrag
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CurrentInvestmentsFragment : Fragment() {
@@ -70,7 +73,8 @@ class CurrentInvestmentsFragment : Fragment() {
                     onEditCanceledListener = {currentEditingInvestmentPosition = null },
                     onInvestListener = { amount -> vm.invest(investmentId = investment.id, amount = amount) },
                     onWithdrawListener = { amount -> vm.withdraw(investmentId = investment.id, amount = amount) },
-                    onSellListener = { vm.sell(investmentId = investment.id) }
+                    onSellListener = { vm.sell(investmentId = investment.id) },
+                    onShowGraphListener = { investmentId -> showInvestmentBalanceGraph(investmentId) }
                 )
             })
         })
@@ -91,6 +95,14 @@ class CurrentInvestmentsFragment : Fragment() {
         }
 
         currentEditingInvestmentPosition = position
+    }
+
+    fun showInvestmentBalanceGraph(investmentId: Int) {
+
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
+            InvestmentBalanceGraphDialogFragment(queryResponse).show(parentFragmentManager, null)
+        }
     }
 
     private fun openNewInvestmentScreen() {
