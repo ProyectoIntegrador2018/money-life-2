@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.prometheo.moneylife.R
 import com.prometheo.moneylife.databinding.FragmentInvestmentsBinding
+import com.prometheo.moneylife.ui.investments.InvestmentBalanceGraphDialogFragment
 import com.prometheo.moneylife.ui.investments.available.AvailableInvestmentsFragment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -97,8 +98,7 @@ class CurrentInvestmentsFragment : Fragment() {
         currentEditingInvestmentPosition = position
     }
 
-    fun showInvestmentBalanceGraph(investmentId: Int) {
-
+    private fun showInvestmentBalanceGraph(investmentId: Int) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val queryResponse = vm.retrieveHistoricalInvestmentBalance(investmentId)
             InvestmentBalanceGraphDialogFragment(queryResponse).show(parentFragmentManager, null)

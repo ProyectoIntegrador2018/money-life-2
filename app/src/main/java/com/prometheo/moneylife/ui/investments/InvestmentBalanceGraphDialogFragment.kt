@@ -14,7 +14,7 @@ import com.prometheo.moneylife.data.models.UserInvestment
 import com.prometheo.moneylife.databinding.FragmentDialogInvestmentBalanceGraphBinding
 
 class InvestmentBalanceGraphDialogFragment(
-    val investmentItemsBalance: List<UserInvestment>
+    private val investmentItemsBalance: List<UserInvestment>
 ): DialogFragment() {
 
     private var _binding: FragmentDialogInvestmentBalanceGraphBinding? = null
@@ -26,12 +26,12 @@ class InvestmentBalanceGraphDialogFragment(
             //Add points into the graph
             graph.addSeries(createPointSeries())
 
-            //Set scrollable atribbutes
+            //Set scrollable attributes
             graph.viewport.setScalableY(true)
             graph.viewport.isYAxisBoundsManual = true
             graph.viewport.setMinY(0.0)
 
-            //Set labels atribbutes
+            //Set labels attributes
             graph.title = investmentItemsBalance.first().name
             graph.gridLabelRenderer.verticalAxisTitle = "Precio"
             graph.gridLabelRenderer.horizontalAxisTitle = "Turno"
@@ -58,15 +58,15 @@ class InvestmentBalanceGraphDialogFragment(
         _binding = null
     }
 
-    fun createPointSeries(): LineGraphSeries<DataPoint> {
+    private fun createPointSeries(): LineGraphSeries<DataPoint> {
 
         val dataPointsArray = investmentItemsBalance.map {
             DataPoint(it.turnNumber?.toDouble()!!,it.currentBalance.toDouble())
         }.toTypedArray()
-        val investmentLineGrapSeries = LineGraphSeries(dataPointsArray)
-        val series: LineGraphSeries<DataPoint> = investmentLineGrapSeries
+        val investmentLineGraphSeries = LineGraphSeries(dataPointsArray)
+        val series: LineGraphSeries<DataPoint> = investmentLineGraphSeries
 
-        //Set atribbutes for series object
+        //Set attributes for series object
         series.setAnimated(true)
         series.title = "Balance"
 
