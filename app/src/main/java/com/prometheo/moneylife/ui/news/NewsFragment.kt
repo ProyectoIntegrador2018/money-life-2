@@ -32,10 +32,10 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated ( view: View, savedInstanceState: Bundle? ) {
         super.onViewCreated (view, savedInstanceState)
+        binding.rvNews.layoutManager = LinearLayoutManager ( context, LinearLayoutManager.VERTICAL, false)
+        binding.rvNews.adapter = adapter
         LoadingLiveData.get().setLoading ( false )
         vm.turnEvents.observe( viewLifecycleOwner, Observer { turnEvents ->
-            binding.rvNews.layoutManager = LinearLayoutManager ( context, LinearLayoutManager.VERTICAL, false)
-            binding.rvNews.adapter = adapter
             adapter.update (turnEvents.map { item ->
                 NewsGroupieItem ( item )
             })

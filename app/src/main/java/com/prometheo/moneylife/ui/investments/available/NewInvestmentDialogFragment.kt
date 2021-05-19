@@ -1,4 +1,4 @@
-package com.prometheo.moneylife.ui.investments
+package com.prometheo.moneylife.ui.investments.available
 
 import android.app.Dialog
 import android.os.Bundle

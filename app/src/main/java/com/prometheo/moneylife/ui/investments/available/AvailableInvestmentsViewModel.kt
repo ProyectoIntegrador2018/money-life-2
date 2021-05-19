@@ -1,4 +1,4 @@
-package com.prometheo.moneylife.ui.investments
+package com.prometheo.moneylife.ui.investments.available
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

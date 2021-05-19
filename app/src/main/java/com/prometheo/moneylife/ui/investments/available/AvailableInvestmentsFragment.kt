@@ -1,4 +1,4 @@
-package com.prometheo.moneylife.ui.investments
+package com.prometheo.moneylife.ui.investments.available
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.prometheo.moneylife.databinding.FragmentCurrentInvestmentsBinding
+import com.prometheo.moneylife.databinding.FragmentInvestmentsBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +25,7 @@ class AvailableInvestmentsFragment : Fragment() {
 
     private val vm: AvailableInvestmentsViewModel by viewModels()
     private val adapter = GroupAdapter<GroupieViewHolder>()
-    private var _binding: FragmentCurrentInvestmentsBinding? = null
+    private var _binding: FragmentInvestmentsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class AvailableInvestmentsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCurrentInvestmentsBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentInvestmentsBinding.inflate(inflater, container, false).apply {
             title.text = "Inversiones Disponibles"
             fabNewInvestment.isVisible = false
             rv.adapter = adapter
@@ -49,6 +49,8 @@ class AvailableInvestmentsFragment : Fragment() {
 
         vm.state.observe(viewLifecycleOwner, Observer { state ->
             binding.loadingIndicator.isVisible = state.loading
+            binding.shimmerViewContainer.isVisible = state.loading
+            binding.rv.isVisible = !state.loading
             if (state.transactionComplete) {
                 parentFragmentManager.popBackStack()
             }

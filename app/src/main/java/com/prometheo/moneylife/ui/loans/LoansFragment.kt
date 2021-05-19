@@ -46,7 +46,14 @@ class LoansFragment : Fragment() {
 
 
         vm.state.observe(viewLifecycleOwner, Observer { state ->
+            binding.rv.isVisible = !state.loading
             binding.loadingIndicator.isVisible = state.loading
+            binding.shimmerViewContainer.isVisible = state.loading
+            if (state.loading) {
+                binding.shimmerViewContainer.startShimmer()
+            } else {
+                binding.shimmerViewContainer.stopShimmer()
+            }
         })
 
         vm.loans.observe(viewLifecycleOwner, Observer { loans ->
