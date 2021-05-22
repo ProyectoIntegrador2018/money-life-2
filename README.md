@@ -54,6 +54,18 @@ Versión 1.0
 | --------------- | ------------ |
 | Kotlin          | 1.3.72       |
 | AndroidX        | 1.3.2        |
+| Room            | 2.2.6        |
+| Hilt            | 2.33-beta    |
+| Groupie         | 2.8.1        |
+| Shimmer         | 0.5.0        |
+| Retrofit        | 2.9.0        |
+| Android Coroutines | 1.3.9     |
+| Moshi           | 1.11.0       |
+| GraphView       | 4.2.2        |
+| MockK           | 1.11.0       |
+| AssertK         | 0.23.1       |
+| Espresso        | 3.3.0        |
+
 
 ### Recursos de gestión
 
@@ -61,5 +73,14 @@ Microsoft Teams
 
 GitHub Projects
 
-### Configuración del proyecto
+### Configuración del proyecto  
+Se recomienda utilizar Android Studio para ejecutar y depurar el proyecto.
+#### Preparación para la depuración
+1- Conectar un dispositivo con Android con la opción de [modo de desarrollador encendida](https://developer.android.com/studio/debug/dev-options#enable) o [crear un dispositivo virtual](https://developer.android.com/studio/run/managing-avds)
+2- Para ejecutar la aplicación, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de ejecutar. Si no se esta utilizando Android Studio, esto mismo se puede realizar ejecutando la tarea 'app:assemble' con Gradle desde la consola de comandos. Esto, generará un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo.
+3- Para ejecutar la aplicación en modo de depuración, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de depurar. Si no se esta utilizando Android Studio, esto se puede realizar ejecutando la tarea 'app:assembleDebug' con con Gradle desde la consola de comandos. Esto, generara un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo. Para comenzar la depuración, se ver el paso 4.
+4- Para conectar la herramienta de depuración a un dispositivo que ya esta ejecutando la aplicación, seleccionar el icono de conectar herramienta de depuración.
+
+
+
 ### Documentación
