@@ -74,13 +74,23 @@ Microsoft Teams
 GitHub Projects
 
 ### Configuración del proyecto  
-Se recomienda utilizar Android Studio para ejecutar y depurar el proyecto.
-#### Preparación para la depuración
-1- Conectar un dispositivo con Android con la opción de [modo de desarrollador encendida](https://developer.android.com/studio/debug/dev-options#enable) o [crear un dispositivo virtual](https://developer.android.com/studio/run/managing-avds)
-2- Para ejecutar la aplicación, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de ejecutar. Si no se esta utilizando Android Studio, esto mismo se puede realizar ejecutando la tarea 'app:assemble' con Gradle desde la consola de comandos. Esto, generará un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo.
-3- Para ejecutar la aplicación en modo de depuración, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de depurar. Si no se esta utilizando Android Studio, esto se puede realizar ejecutando la tarea 'app:assembleDebug' con con Gradle desde la consola de comandos. Esto, generara un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo. Para comenzar la depuración, se ver el paso 4.
-4- Para conectar la herramienta de depuración a un dispositivo que ya esta ejecutando la aplicación, seleccionar el icono de conectar herramienta de depuración.
+Se recomienda utilizar Android Studio para ejecutar y depurar el proyecto. Es posible compilar y ejecutar la aplicacion desde la consola de comandos utilizando AVD, ADB y Gradle. Sin embargo, Android Studio contiene herramientas que facilitan el desarrollo en esta tecnología.
+Para probar la aplicación, se necesita conectar un dispositivo con Android con la opción de [modo de desarrollador encendida](https://developer.android.com/studio/debug/dev-options#enable) o [crear un dispositivo virtual](https://developer.android.com/studio/run/managing-avds)
 
+### Ejecución y Depuracion
+- Para ejecutar la aplicación, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de ejecutar. Si no se esta utilizando Android Studio, esto mismo se puede realizar ejecutando la tarea 'app:assemble' con Gradle desde la consola de comandos. Esto, generará un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo ejecutando la tarea 'app:installDebug'.
+- Para ejecutar la aplicación en modo de depuración, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de depurar. Si no se esta utilizando Android Studio, esto se puede realizar ejecutando la tarea 'app:assembleDebug' con con Gradle desde la consola de comandos. Esto, generara un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo ejecutando la tarea 'app:installDebug'. Para comenzar la depuración, se ver punto siguiente.
+- Para conectar la herramienta de depuración a un dispositivo que ya esta ejecutando la aplicación, seleccionar el icono de conectar herramienta de depuración.
 
+Para detener el proyecto, basta con cerrar la aplicación en el dispositivo o bien, seleccionando la opción de detener desde Android Studio.
+
+### Ejecutar pruebas
+Para ejecutar las pruebas, ejecutar la tarea 'app:check' con Gradle en la línea de comandos, o bien hacer click derecho sobre el nombre del proyecto en Android Studio y seleccionar 'correr todas las pruebas'. Al terminar de ejecutarse este proceso, se mostrará una lista con las pruebas encontradas y su resultado.
+
+### Crear versión para distribución
+Para crear una version para distribución:
+- Opción desde Android Studio: Seleccionar Build -> Build Bundle(s) / APK (s) -> Build APK (s).
+- Opcion desde Gradle: ejecutar desde linea de comandos 
+Este archivo se puede distribuir directamente con los usuarios que deseen probar la aplicacion
 
 ### Documentación
