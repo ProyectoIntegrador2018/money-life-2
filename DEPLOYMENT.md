@@ -11,7 +11,7 @@ El juego comenzará con una persona estudiante de aproximadamente 18 años y se 
 ## Instrucciones de Instalación
 
 1.  Descarga el APK (app-debug.apk) de Money-Life del repositorio desde https://github.com/ProyectoIntegrador2018/money-life-2/releases/download/v1.2.0/money-life-1.2.0.apk
-3.	Habilita la instalación de aplicaciones third-party (para usuarios de Android 8 o superior).
+2.	Habilita la instalación de aplicaciones third-party (para usuarios de Android 8 o superior).
     a.	Entra a la Configuración de tu dispositivo
     b.	Oprime Seguridad y Privacidad
     c.	Bajo la sección de Instalación de Aplicaciones, selecciona la opción de Instalación de Fuentes Desconocidas.
