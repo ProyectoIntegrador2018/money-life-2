@@ -16,12 +16,10 @@ El juego comenzará con una persona estudiante de aproximadamente 18 años y se 
 * [Tecnología utilizada](#technology-stack)
 * [Recursos de gestión](#management-resources)
 * [Configuración del proyecto](#setup-the-project)
-* [Ejecutar herramientas para desarrollo](#running-the-stack-for-development)
-* [Detener el proyecto](#stop-the-project)
-* [Restaurar Base de Datos](#restoring-the-database)
-* [Debugging](#debugging)
-* [Ejecución de especificaciones](#running-specs)
-* [Checar código de posibles riesgos](#checking-code-for-potential-issues)
+* [Ejecución y Depuración](#exec-and-debugging)
+* [Ejecutar pruebas](#running-tests)
+* [Crear versión para distribución](#deployment-build)
+
 
 ### Detalle de Cliente
 
@@ -54,6 +52,18 @@ Versión 1.0
 | --------------- | ------------ |
 | Kotlin          | 1.3.72       |
 | AndroidX        | 1.3.2        |
+| Room            | 2.2.6        |
+| Hilt            | 2.33-beta    |
+| Groupie         | 2.8.1        |
+| Shimmer         | 0.5.0        |
+| Retrofit        | 2.9.0        |
+| Android Coroutines | 1.3.9     |
+| Moshi           | 1.11.0       |
+| GraphView       | 4.2.2        |
+| MockK           | 1.11.0       |
+| AssertK         | 0.23.1       |
+| Espresso        | 3.3.0        |
+
 
 ### Recursos de gestión
 
@@ -61,5 +71,22 @@ Microsoft Teams
 
 GitHub Projects
 
-### Configuración del proyecto
-### Documentación
+### Configuración del proyecto  
+Se recomienda utilizar Android Studio para ejecutar y depurar el proyecto. Es posible compilar y ejecutar la aplicación desde la consola de comandos utilizando AVD, ADB y Gradle. Sin embargo, Android Studio contiene herramientas que facilitan el desarrollo en esta tecnología.
+Para probar la aplicación, se necesita conectar un dispositivo con Android con la opción de [modo de desarrollador encendida](https://developer.android.com/studio/debug/dev-options#enable) o [crear un dispositivo virtual](https://developer.android.com/studio/run/managing-avds)
+
+### Ejecución y Depuración
+- Para ejecutar la aplicación, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de ejecutar. Si no se esta utilizando Android Studio, esto mismo se puede realizar ejecutando la tarea 'app:assemble' con Gradle desde la consola de comandos. Esto, generará un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo ejecutando la tarea 'app:installDebug'.
+- Para ejecutar la aplicación en modo de depuración, una vez que el dispositivo conectado se encuentra activo, seleccionar el icono de depurar. Si no se esta utilizando Android Studio, esto se puede realizar ejecutando la tarea 'app:assembleDebug' con con Gradle desde la consola de comandos. Esto, generara un archivo .apk dentro de la carpeta 'build' que puede instalarse en el dispositivo ejecutando la tarea 'app:installDebug'. Para comenzar la depuración, se ver punto siguiente.
+- Para conectar la herramienta de depuración a un dispositivo que ya esta ejecutando la aplicación, seleccionar el icono de conectar herramienta de depuración.
+
+Para detener el proyecto, basta con cerrar la aplicación en el dispositivo o bien, seleccionando la opción de detener desde Android Studio.
+
+### Ejecutar pruebas
+Para ejecutar las pruebas, ejecutar la tarea 'app:check' con Gradle en la línea de comandos, o bien hacer click derecho sobre el nombre del proyecto en Android Studio y seleccionar 'correr todas las pruebas'. Al terminar de ejecutarse este proceso, se mostrará una lista con las pruebas encontradas y su resultado.
+
+### Crear versión para distribución
+Para crear una versión para distribución:
+- Opción desde Android Studio: Seleccionar Build -> Build Bundle(s) / APK (s) -> Build APK (s).
+- Opcion desde Gradle: ejecutar desde línea de comandos 
+Este archivo se puede distribuir directamente con los usuarios que deseen probar la aplicación
