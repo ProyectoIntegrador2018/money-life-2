@@ -49,4 +49,5 @@
     <string name="interest_rate_label">Tasa de interés:</string>
     <string name="button_apply_for_loan">SOLICITAR</string>
     <string name="duration_label">Duracion:</string>
+    <string name="dialog_pay_loan_description">Pago anticipado de deuda (total o parcial)</string>
 </resources>
