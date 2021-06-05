@@ -48,7 +48,7 @@ class TurnFragment : Fragment() {
         binding.fabNextTurn.setOnClickListener { vm.nextTurn() }
 
         vm.turnData.observe(viewLifecycleOwner, { turnData ->
-            binding.tvWeekNumber.text =  NumberFormat.getCurrencyInstance(Locale.US).format(turnData.turnNumber)
+            binding.tvWeekNumber.text = getString(R.string.tv_week_number, turnData.turnNumber)
             binding.tvIncomeAmount.text =  NumberFormat.getCurrencyInstance(Locale.US).format(turnData.income)
             binding.tvBalanceAmount.text =  NumberFormat.getCurrencyInstance(Locale.US).format(turnData.balance)
             binding.tvExpensesAmount.text = NumberFormat.getCurrencyInstance(Locale.US).format(turnData.expenses)
