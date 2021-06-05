@@ -33,7 +33,7 @@ class InvestmentBalanceGraphDialogFragment(
 
             //Set labels attributes
             graph.title = investmentItemsBalance.first().name
-            graph.gridLabelRenderer.verticalAxisTitle = "Precio"
+            graph.gridLabelRenderer.verticalAxisTitle = "Posición $"
             graph.gridLabelRenderer.horizontalAxisTitle = "Turno"
             graph.legendRenderer.isVisible = true
             graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP

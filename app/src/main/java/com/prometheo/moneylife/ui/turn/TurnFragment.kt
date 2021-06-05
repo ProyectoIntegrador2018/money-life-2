@@ -14,6 +14,8 @@ import com.prometheo.moneylife.data.models.TurnAction
 import com.prometheo.moneylife.data.models.TurnActionCategory
 import com.prometheo.moneylife.databinding.FragmentTurnBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
+import java.util.*
 
 @AndroidEntryPoint
 class TurnFragment : Fragment() {
@@ -47,9 +49,9 @@ class TurnFragment : Fragment() {
 
         vm.turnData.observe(viewLifecycleOwner, { turnData ->
             binding.tvWeekNumber.text = getString(R.string.tv_week_number, turnData.turnNumber)
-            binding.tvIncomeAmount.text = getString(R.string.tv_money, turnData.income)
-            binding.tvBalanceAmount.text = getString(R.string.tv_money, turnData.balance)
-            binding.tvExpensesAmount.text = getString(R.string.tv_money, turnData.expenses)
+            binding.tvIncomeAmount.text =  NumberFormat.getCurrencyInstance(Locale.US).format(turnData.income)
+            binding.tvBalanceAmount.text =  NumberFormat.getCurrencyInstance(Locale.US).format(turnData.balance)
+            binding.tvExpensesAmount.text = NumberFormat.getCurrencyInstance(Locale.US).format(turnData.expenses)
             calculateHappiness(turnData)
         })
         vm.turnActions.observe(viewLifecycleOwner, { actions ->
